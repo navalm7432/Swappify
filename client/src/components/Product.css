@@ -1,0 +1,39 @@
+
+.app{
+margin-top:100px;
+display: flex;
+flex-direction: column;
+align-items: center;
+}
+
+.product_container{
+    box-sizing: border-box;
+    margin-top: 20px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+    gap: 5px;
+    padding: 10px;
+}
+.product{
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-radius:8px ;
+}
+.product >img{
+    width: 100%;
+    object-fit: contain;
+    border: 1px solid black;
+
+}
+.detail{
+    height: 100px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

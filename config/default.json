@@ -1,0 +1,4 @@
+{
+  "mongoURI": "mongodb+srv://Naval:naval123@cluster0.4lvpx.mongodb.net/Swappify?retryWrites=true&w=majority",
+  "jwtSecret": "secretjwt"
+}
