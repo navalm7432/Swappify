@@ -5,6 +5,7 @@ const Login_Suggestion = (props) => {
        <Container>
            <Hero>
                <h3>Find the best deals and grap the  amazing opportunities</h3>
+               
               <ul>
                   <li>Mobile</li>
                   <li>Electronics</li>
@@ -23,6 +24,7 @@ const Login_Suggestion = (props) => {
 }
 
 const Container = styled.div`
+//background-color: #df70ff;
 display: flex;
 align-content: center;
 min-height: 700px;
@@ -35,7 +37,7 @@ width: 100%;
 max-width: 1128px;
 align-items: center;
 margin: auto;
-margin-top: 60rem;
+margin-top: 1rem;
 @media (max-width: 768px) {
     //margin: auto;
     min-height: 0px;

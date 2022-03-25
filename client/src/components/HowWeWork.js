@@ -6,25 +6,30 @@ const HowWeWork = (props) => {
             <h3>How We Work ?</h3>
             <h4>Experience</h4>
             <Detail>
-                
-                <p>Lorem ipsum dolor sit amet. 
-                    Eos laboriosam maiores non vero eos repellat omnis ut 
-                    architecto consequatur cum odio dignissimos est dolores accusantium 
-                    ut voluptate sint. Id adipisci omnis qui autem architecto sit iure 
-                    rerum quo deleniti tempore? Aut sint deleniti sed tenetur Quis in magnam 
-                    enim et dolores doloribus qui vitae voluptate ut dolor aperiam.
-                    Lorem ipsum dolor sit amet. 
-                    Eos laboriosam maiores non vero eos repellat omnis ut 
-                    architecto consequatur cum odio dignissimos est dolores accusantium 
-                    ut voluptate sint. Id adipisci omnis qui autem architecto sit iure 
-                    rerum quo deleniti tempore? Aut sint deleniti sed tenetur Quis in magnam 
-                    enim et dolores doloribus qui vitae voluptate ut dolor aperiam.
-                   </p>
-                    
-                    <img src = "/images/ext.gif"  alt=""/>
-                    
+
+                <Img>
+
+                    <img src="/images/exp.svg" alt="" />
+                </Img>
+
+                <Content>
+                    <p>Lorem ipsum dolor sit amet.
+                        Eos laboriosam maiores non vero eos repellat omnis ut
+                        architecto consequatur cum odio dignissimos est dolores accusantium
+                        ut voluptate sint. Id adipisci omnis qui autem architecto sit iure
+                        rerum quo deleniti tempore? Aut sint deleniti sed tenetur Quis in magnam
+                        enim et dolores doloribus qui vitae voluptate ut dolor aperiam.
+                        Lorem ipsum dolor sit amet.
+                        Eos laboriosam maiores non vero eos repellat omnis ut
+                        architecto consequatur cum odio dignissimos est dolores accusantium
+                        ut voluptate sint. Id adipisci omnis qui autem architecto sit iure
+                        rerum quo deleniti tempore? Aut sint deleniti sed tenetur Quis in magnam
+                        enim et dolores doloribus qui vitae voluptate ut dolor aperiam.
+                    </p>
+                    <button>See more</button>
+                </Content>
             </Detail>
-            <button>See More</button>
+
         </Container>
     )
 }
@@ -37,7 +42,9 @@ width: 100%;
 
 
 h3 {
-    margin-left: 40px;
+    /* margin-left: 40px; */
+    text-align: right;
+    margin-right: 40px;
     font-size: 30px;
     font-weight: 500;
     text-decoration: underline;
@@ -47,33 +54,16 @@ h3 {
 }
 
 h4 {
-    margin-left: 50px;
+    /* margin-left: 50px; */
+    text-align: right;
+    margin-right: 40px;
     font-size: 25px;
     font-weight: 700;
     margin-bottom: 10px;
 
 }
 
-button {
-    margin-top: -320px;
-    margin-left: 10px;
-    margin-bottom: 20px;
-    padding: 10px 30px;
-        margin-top: -520px;
-        margin-left: 200px;
-        border-radius: 5px;
-        border: none;
-        background-color: #002366;
-        color: #fff;
-        font-size: 15px;
-        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 
-        &:hover {
-            background-color: #002C80;
-            transform: translate(0px) ease-in-out;
-            box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
-        }
-}
 `;
 
 
@@ -95,11 +85,39 @@ h4 {
  }
 
 img {
-    width: 1000px;
+    width: 700px;
     height: 600px;
     float: right;
     margin-top: -130px;
 }
+`;
+
+const Content = styled.div`
+flex: 0.6;
+
+button {
+    margin-top: 20px;
+    margin-left: 500px;
+    padding: 12px 40px;
+    border-radius: 4px;
+    border: none;
+        background-color: #7f00ff;
+        color: #fff;
+        font-size: 15px;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+        &:hover {
+            background-color: #bf53ff;
+            transform: translate(0px) ease-in-out;
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+            color: #000;
+        }
+
+}
+`;
+
+const Img = styled.div`
+flex: 0.4;
 `;
 
 

@@ -1,0 +1,112 @@
+
+/* .App {
+    font-family: sans-serif;
+    text-align: center;
+  } */
+  .App button {
+    /* padding: 13px 29px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    background: crimson;
+    color: white;
+    cursor: pointer; */
+  }
+  .container11 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.7);
+  }
+  .container11 .modal {
+    /* z-index: 1; */
+    width: 550px;
+    height: 420px;
+    background: white;
+    display: flex;
+     align-items: center;
+     flex-direction: column;
+   
+    border-radius: 5px; 
+    position: relative;
+    animation: animate 0.3s;
+  }
+
+  .modal .SignIn {
+    margin-top:30px;
+  }
+
+  .SignIn p {
+      color: #ccc;
+      text-align: center;
+      margin-top: 15px;
+  }
+
+  .signin {
+      border: none;
+      background-color: transparent;
+      font-size: 18px;
+      color: #ccc;
+        margin-left: 250px;
+        margin-top: -20px;
+        cursor: pointer;
+  }
+
+  .input {
+      width: 90%;
+      height: 39px;
+      padding: 12px 20px;
+      margin-bottom: 20px;
+      margin-top: 10px;
+      margin-left: 20px;
+      margin-right: 20px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+  }
+
+  .Label {
+      margin-left: 20px;
+      font-size: 15px;
+      font-weight: bold;
+  }
+
+  .button_SignIn{
+    margin-top: 20px;
+    align-items: center;
+    margin-left: 200px;
+    padding: 12px 60px;
+    border-radius: 4px;
+    border: none;
+    background-color: #7f00ff;
+    color: #fff;
+  }  
+
+  .modal .close {
+    position: absolute;
+    top: 7px;
+    right: 7px;
+    padding: 8px 11px;
+    background: #7f00ff;
+    color: white;
+    font-weight: bold;
+    border: none;
+    outline: none;
+    border-radius: 2px;
+    cursor: pointer;
+  }
+  @keyframes animate {
+    from {
+      transform: scale(0.5);
+    }
+    to {
+      transform: scale(1);
+    }
+  }

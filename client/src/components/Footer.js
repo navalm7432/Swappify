@@ -31,7 +31,8 @@ const Container = styled.div`
 margin-top: 100px;
 border-top: 1px solid lightgray;
 display: flex;
-background-color: #002366;
+width: 100%;
+background-color: rgb(138,43,226);
 border-radius: 70px 0px 0px 0px;
 @media (max-width: 768px) {
      
@@ -45,6 +46,7 @@ const Logo = styled.div`
 display: flex;
 flex-direction: column;
 flex: 0.4;
+width: 100%;
 
 span {
     font-size: 24px;

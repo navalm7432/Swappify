@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import Modal from "./Modal";
+import Modal from "./ProductModal";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import "./Product.css";

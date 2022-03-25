@@ -1,18 +1,18 @@
 import styled from "styled-components";
-import car_gif from "../Utility/car.gif";
-import furni_gif from "../Utility/furni.gif";
+import car_pr_gif from "../Utility/car_pr.gif";
+import fur_gif from "../Utility/fur.gif";
 import elec_gif from "../Utility/elec.gif";
 import book_gif from "../Utility/book.gif";
-import fashion_gif from "../Utility/giphy.gif";
+import windy_gif from "../Utility/windy.gif";
 const Category = (props) => {
   return (
     <Container>
       <h3>Category</h3>
-      <p>The best deals are available</p>
+      <p>The best deals are available </p>
       <Content>
         <div className="box">
           <Wrap>
-            <img src={car_gif} alt="" />
+            <img src={car_pr_gif} alt="" />
             {/* <video autoPlay loop playsInline>
                         <source src="/video/1564676714-pixar.mp4" type="video/mp4" />
                     </video> */}
@@ -30,7 +30,7 @@ const Category = (props) => {
         </div>
         <div className="box">
           <Wrap>
-            <img src={furni_gif} alt="" />
+            <img src={fur_gif} alt="" />
             {/* <video autoPlay loop playsInline>
                         <source src="/video/1564676714-pixar.mp4" type="video/mp4" />
                     </video> */}
@@ -49,7 +49,7 @@ const Category = (props) => {
 
         <div className="box">
           <Wrap>
-            <img src={fashion_gif} alt="" />
+            <img src={windy_gif} alt="" />
             {/* <video autoPlay loop playsInline>
                         <source src="/video/1564676714-pixar.mp4" type="video/mp4" />
                     </video> */}
@@ -63,15 +63,15 @@ const Category = (props) => {
 
 const Container = styled.div`
   padding: 0 0 26px;
-  background-color: white;
+  background-color: none;
 
   h3 {
-    margin-top: 470px;
+    margin-top: 10px;
     margin-left: 40px;
-    font-size: 30px;
+    font-size: 35px;
     font-weight: 500;
     text-decoration: underline;
-    color: #191919;
+    color: #000;
     margin-bottom: 2px;
     font-family: "Heebo", sans-serif;
   }
@@ -80,7 +80,8 @@ const Container = styled.div`
     margin-left: 40px;
     margin-top: 2px;
     font-size: 20px;
-    color: gray;
+    color: #9f33ff;
+    font-style: underline;
     font-family: "Heebo", sans-serif;
   }
 `;

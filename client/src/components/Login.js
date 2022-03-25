@@ -1,16 +1,17 @@
-
 import styled from "styled-components";
-//import Login_Section from "./Login_Section";
+import Login_Section from "./Login_Section";
 import Login_Suggestion from "./Login__Suggestion";
 
 const Login = (props) => {
     return (
         <Container>
             <Content>
-                 <BgImage /> 
+            <Login_Section />
                 <Login_Suggestion />
-                {/* <Login_Section /> */}
-                
+               
+                <Image>
+                    {/* <img src="images/landing.svg" alt=""/> */}
+                </Image>
             </Content>
         </Container>
     )
@@ -23,7 +24,6 @@ display: flex;
 flex-direction: column;
 text-align: center;
 height: 100vh;
-
 `;
 
 const Content = styled.div`
@@ -58,6 +58,9 @@ z-index: -1;                     //adds all the content on the top of the image
         position: initial;
         height: 550rem;
     } */
+`;
+
+const Image = styled.div`
 `;
 
 

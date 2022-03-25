@@ -11,7 +11,7 @@ const Contact = (props) => {
             <Center>
                     <h5>Contact US</h5>
                     <Content>
-                        <img src= "images/cont.png" alt=""/>
+                        <img src= "images/cont.svg" alt=""/>
                         <form>
                             <input type="text"  placeholder="Fullname"/>
                             <input type="text"  placeholder="Email"/>
@@ -39,7 +39,7 @@ flex-direction: column;
 const Top = styled.div`
 width: 100%;
 margin-top: 0px;
-background-color: #002366;
+background-color: rgb(138,43,226);
 height: 400px;
 border-radius: 0px 0px 70px 0px;
 color: white;
@@ -114,15 +114,16 @@ form {
         margin-left: 200px;
         border-radius: 5px;
         border: none;
-        background-color: #002366;
+        background-color: #7f00ff;
         color: #fff;
         font-size: 15px;
         box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 
         &:hover {
-            background-color: #002C80;
+            background-color: #bf53ff;
             transform: translate(0px) ease-in-out;
             box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+            color: #000;
         }
     }
 }

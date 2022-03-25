@@ -1,20 +1,32 @@
 import styled from "styled-components";
+//import LoginPopup from "./LoginPopup";
+import { useHistory } from 'react-router';
+//import { Modal } from "./Modal";
+//import './Model.css'
 
 const Login_Section = (props) => {
+    const history = useHistory();
+    const handleClick = () => history.push('/loginpopup');
+    // const [showModal, setShowModal] = useState(false);
+
+    // const openModal = () => {
+    //     setShowModal(true);
+    // }
     return (
         <Section>
             <Hero>
-                    <h1>Welcome to Swappify</h1>
-                    <p></p>
-                    <img src="/images/login-hero.svg" alt="" />
-                </Hero>
-                <Form>
-                    <Google >    
-                        {/* onClick={() => props.signIn()} */}
-                        <img src="/images/google.svg" alt="" />
-                        Swap The Best Deals
-                    </Google>
-                </Form>
+                <h1>Welcome to Swappify</h1>
+                <p>Please click on button to login and add your product to get swapped with our verified and trusted customers. </p>
+                <img src="/images/team.svg" alt="" />
+            </Hero>
+            <Form>
+                <Google  onClick={handleClick}>
+                    {/* onClick={() => props.signIn()} */}
+                    <img src="/images/google.svg" alt="" />
+                    Swap The Best Deals
+                    
+                </Google>
+            </Form>
         </Section>
     )
 }
@@ -23,7 +35,7 @@ const Section = styled.div`
 display: flex;
 align-content: center;
 min-height: 700px;
-padding-bottom: 138px;
+padding-bottom: 20px;
 padding-top: 40px;
 padding: 60px 0;
 position: relative;
@@ -32,7 +44,7 @@ width: 100%;
 max-width: 1128px;
 align-items: center;
 margin: auto;
-margin-top: 1600px;
+margin-top: 50rem;
 @media (max-width: 768px) {
     margin: auto;
     min-height: 0px;
@@ -45,7 +57,7 @@ h1 {
     padding-bottom: 0;
     width: 55%;
     font-size: 52px;
-    color: #000;
+    color: purple;
     font-weight: 200;
     line-height: 70px;
     text-align: left;
@@ -57,7 +69,13 @@ h1 {
         margin-top: 600px
     }
 }
-
+p{
+    margin-left: -20px;
+    width: 50%;
+    margin-top: -20px;
+    color: darkgray;
+    text-align: left;
+}
 img {
     /* z-index: -1; */
     width: 700px;
@@ -95,8 +113,8 @@ vertical-align: middle;
 z-index: 0;
 transition-duration: 167ms;
 font-size: 20px;
-color: rgba( 0, 0, 0, 0.6);
-
+color: #bf53ff;
+margin-top: -30px;
 &:hover {
     background-color: rgba(207, 207, 207, 0.25);
     color: rgba(0,0,0,0.75);

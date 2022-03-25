@@ -7,7 +7,7 @@ const About = (props) => {
      <Container>
          <Video>
          <video autoPlay loop playsInline>
-          <source src="/video/video2.mp4" type="video/mp4" />
+          <source src="/video/com.mp4" type="video/mp4" />
         </video>
         <h1>About Us</h1>
          </Video>

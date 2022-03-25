@@ -3,6 +3,9 @@ const initialState = {
   isAuthenticated: null,
   isLoading: false,
   user: null,
+  isModalAction: false,
+  isModalOpen: false,
+  isModalClose: true,
 };
 
 const authReducer = (state = initialState, action) => {
@@ -18,6 +21,23 @@ const authReducer = (state = initialState, action) => {
         isAuthenticated: true,
         isLoading: false,
         user: action.payload,
+      };
+    case "IS_MODAL_ACTION":
+      return {
+        ...state,
+        isModalAction: action.payload,
+      };
+    // case "IS_MODAL_OPEN":
+    //   return {
+    //     ...state,
+    //     isModalOpen: true,
+    //     isModalClose: false,
+    //   };
+    case "IS_MODAL_CLOSE":
+      return {
+        ...state,
+        isModalOpen: false,
+        isModalClose: true,
       };
     case "LOGIN_SUCCESS":
     case "REGISTER_SUCCESS":
