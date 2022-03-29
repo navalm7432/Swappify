@@ -2,7 +2,7 @@ import config from "config";
 import jwt from "jsonwebtoken";
 
 function auth(req, res, next) {
-  const token = req.header("x-auth-token");
+  const token = req.header("x_auth_token");
 
   try {
     //check for token
@@ -20,7 +20,8 @@ function auth(req, res, next) {
     req.user = decoded.id;
     next();
   } catch (e) {
-    res.status(400).json({ msg: e.message });
+    res.status(400).send(e.message);
+    console.log(e.message);
   }
 }
 export default auth;

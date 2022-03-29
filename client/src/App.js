@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
 import Header from "./components/Header";
@@ -9,12 +10,66 @@ import Contact from "./components/Contact";
 import MyAd from "./components/MyAd";
 import AddProduct from "./components/AddProduct";
 import SignIn from "./components/SignIn";
-import LoginPopup from './components/LoginPopup'
+import LoginPopup from "./components/LoginPopup";
 import Profile from "./components/Profile";
-
+import ErrorMessage from "./components/ErrorMessage";
+import axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
+// import {userLoaded} from "./actions/authAction"
 function App() {
+  const result = useSelector((state) => state);
+  const dispatch = useDispatch();
+  const [error, setError] = useState();
+  console.log(result.auth.user);
+  useEffect(() => {
+    const checkIsLoggedIn = () => {
+      dispatch({
+        type: "USER_LOADING",
+      });
+
+      let token = localStorage.getItem("auth-token");
+      if (token === null) {
+        localStorage.setItem("auth-token", "");
+        token = "";
+        dispatch({
+          type: "AUTH_ERROR",
+        });
+      }
+      const config = {
+        headers: {
+          "Content-type": "application/json",
+          "x_auth_token": token,
+        },
+      };
+
+      axios
+        .post("http://localhost:4000/api/auth/verify", config)
+        .then((tokenRes) => {
+      console.log("hello");
+      if (tokenRes.data) {
+            axios
+              .get("http://localhost:4000/api/auth/user", config)
+              .then((user) => {
+                dispatch({
+                  type: "USER_LOADED",
+                  payload: user.data,
+                });
+              });
+          }
+        })
+        .catch((e) => {
+          e.response.data.msg && setError(e.response.data.msg);
+        });
+    };
+    checkIsLoggedIn();
+    // eslint-disable-next-line
+  }, []);
+
   return (
     <div className="App">
+      {error && (
+        <ErrorMessage eMessage={error} clearError={() => setError(undefined)} />
+      )}
       <Header />
       <Router>
         <Switch>

@@ -1,9 +1,8 @@
 .errorMessage {
-    background: rgb(255, 104, 104);
+    background: #7f00ff;
     color: white;
-    /* padding: 5px; */
+    padding: 5px;
     margin: 10px 5px;
-    border: 1px solid red;
     border-radius: 10px;
     display: flex;
     align-items: center;
@@ -11,13 +10,19 @@
     width: 500px;
     height: 40px;
   }
-  .errorMessage > button {
-    border: 1px solid black;
-    background-color: red;
+  .errorMessageButton {
+    text-align: center;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin: 0;
+    border: 2px solid white;
+    background-color: #7f00ff;
     color: white;
+    border-radius: 50%;
     height: 30px;
     width: 30px;
     border-radius: 50%;
-    padding: 5px;
   }
   

@@ -10,7 +10,6 @@ import { useSelector, useDispatch } from "react-redux";
 
 const Home = (props) => {
   const result = useSelector((state) => state);
-console.log(result);
   return (
     <Container>
       <Header />

@@ -66,11 +66,11 @@ router.get("/user", auth, (req, res) => {
 //@access  private
 router.post("/verify", (req, res) => {
   try {
-    const token = req.header("x-auth-token");
+    const token = req.body.headers.x_auth_token;
     if (!token) return res.json(false);
 
-    const verified = jwt.verify(token, config.get("jwtSecret"));
-    if (!verified) return res.json(false);
+    const verified = jwt.verify(token,"secretjwt");
+    if (!verified) return res.json({mssg:"false"});
 
     User.findById(verified.id).then((user) => {
       if (!user) return res.json(false);

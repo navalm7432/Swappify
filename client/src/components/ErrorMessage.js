@@ -4,7 +4,7 @@ function ErrorMessage({ eMessage, clearError }) {
   return (
     <div className="errorMessage">
       <p>{eMessage}</p>
-      <button onClick={clearError}>X</button>
+      <span className="errorMessageButton" onClick={clearError}>X</span>
     </div>
   );
 }

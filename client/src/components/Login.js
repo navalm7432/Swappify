@@ -24,6 +24,8 @@ display: flex;
 flex-direction: column;
 text-align: center;
 height: 100vh;
+background-color: rgb(138, 43, 226);
+
 `;
 
 const Content = styled.div`

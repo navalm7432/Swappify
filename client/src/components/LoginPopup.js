@@ -30,6 +30,7 @@ const LoginPopup = () => {
           payload: user.data,
         });
         localStorage.setItem("auth-token", user.data.token);
+        console.log(user.data);
         history.push("/home");
       })
       .catch((e) => {
@@ -47,9 +48,7 @@ const LoginPopup = () => {
           <button onClick={handleClick}>Sign In</button>
         </SignUp>
         <SignIn>
-        {error && (
-        <ErrorMessage eMessage={error} clearError={() => setError(undefined)} />
-      )}
+         
           <h3>Create Account</h3>
           <label>Email</label>
           <input
@@ -62,9 +61,15 @@ const LoginPopup = () => {
             onChange={(e) => {
               setPassword(e.target.value);
             }}
-            type="text"
+            type="password"
             placeholder="Enter Password"
           />
+          {error && (
+            <ErrorMessage
+              eMessage={error}
+              clearError={() => setError(undefined)}
+            />
+          )}
           <button onClick={onSubmit}>Login</button>
         </SignIn>
       </Box>
@@ -73,33 +78,74 @@ const LoginPopup = () => {
 };
 
 const PopUp = styled.div`
-  margin: auto;
+  height: 100vh;
   padding: 60px 60px;
+  background-color: rgb(138, 43, 226);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 `;
 
 const Box = styled.div`
   display: flex;
-  margin-top: 90px;
-  margin-left: 150px;
-  margin-right: 150px;
   height: 80vh;
   width: 80%;
   border: 1px solid #ccc;
   border-radius: 5px;
 `;
 
+const SignIn = styled.div`
+  flex: 0.6;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  h3 {
+    text-align: center;
+    font-size: 30px;
+    color: white;
+  }
+  label {
+    font-size: 20px;
+    font-weight: bold;
+    padding: 10px 12px;
+    color: white;
+  }
+  input {
+    font-weigth: bold;
+    border: none;
+    outline: none;
+    height: 40px;
+    width: 500px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 15px;
+    margin-bottom: 17px;
+  }
+  button {
+    margin-top: 30px;
+    padding: 12px 30px;
+    border-radius: 4px;
+    border: none;
+    background-color: #7f00ff;
+    color: white;
+    cursor: pointer;
+  }
+`;
+
 const SignUp = styled.div`
   flex: 0.4;
   /* margin-left: 40px;
 margin-top: 180px; */
-  background-color: #7f00ff;
+  background-color: rgb(11, 15, 230);
   h4 {
     text-align: center;
     margin-left: 20px;
     margin-top: 200px;
     font-size: 40px;
     font-weight: normal;
-    color: #fff;
+    color: white;
     margin-bottom: 1px;
   }
   h3 {
@@ -107,7 +153,7 @@ margin-top: 180px; */
     margin-left: 20px;
     font-size: 45px;
     font-weight: bold;
-    color: #fff;
+    color: white;
     padding: 2px 2px;
     margin-top: 5px;
   }
@@ -126,39 +172,7 @@ margin-top: 180px; */
     border: none;
     text-align: center;
     cursor: pointer;
-  }
-`;
-
-const SignIn = styled.div`
-  flex: 0.6;
-  h3 {
-    text-align: center;
-    font-size: 30px;
-  }
-  label {
-    font-size: 20px;
-    margin-left: 30px;
-    font-weight: normal;
-    padding: 10px 12px;
-  }
-  input {
-    height: 40px;
-    width: 90%;
-    margin-left: 40px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-top: 15px;
-    margin-bottom: 17px;
-  }
-  button {
-    margin-top: 30px;
-    margin-left: 260px;
-    padding: 12px 30px;
-    border-radius: 4px;
-    border: none;
-    background-color: #7f00ff;
-    color: #fff;
-    cursor: pointer;
+    color: #7f00ff;
   }
 `;
 

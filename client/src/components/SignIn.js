@@ -7,7 +7,7 @@ import ErrorMessage from "./ErrorMessage";
 
 const SignIn = (props) => {
   const history = useHistory();
-  const handleClick = () => history.push("/home");
+  // const handleClick = () => history.push("/home");
 
   const [name, setName] = useState();
   const [email, setEmail] = useState();
@@ -37,15 +37,16 @@ const SignIn = (props) => {
 
   return (
     <Content>
-      {error && (
-        <ErrorMessage eMessage={error} clearError={() => setError(undefined)} />
-      )}
+      
       <Box>
         <Img>
           <img src="images/signin1.svg" alt="" />
         </Img>
         <Field>
           <h3>Sign In</h3>
+          {error && (
+        <ErrorMessage eMessage={error} clearError={() => setError(undefined)} />
+      )}
           <label>Name</label>
           <input
             onChange={(e) => {
@@ -80,7 +81,10 @@ const SignIn = (props) => {
   );
 };
 
-const Content = styled.div``;
+const Content = styled.div`
+background-color: rgb(138, 43, 226);
+height:100vh;
+`;
 
 const Box = styled.div`
   display: flex;
@@ -89,7 +93,7 @@ const Box = styled.div`
 const Img = styled.div`
   flex: 0.5;
   img {
-    height: 90vh;
+    height: 80vh;
     margin-top: 50px;
   }
 `;
@@ -101,14 +105,19 @@ const Field = styled.div`
     font-size: 30px;
     margin-top: 60px;
     margin-bottom: 60px;
+    color:white;
+    text-decoration:underline;
   }
   label {
+    color:white;
     font-size: 20px;
     margin-left: 30px;
-    font-weight: normal;
+    font-weight: 600;
     padding: 10px 12px;
   }
   input {
+    border:none;
+    outline:none;
     height: 50px;
     width: 80%;
     margin-left: 40px;

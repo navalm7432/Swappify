@@ -1,13 +1,9 @@
 import React, { useEffect } from "react";
-import Modal from "./ProductModal";
+import styled from "styled-components";
+import "./Product.css";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
-// import { Link } from "react-router-dom";
-import "./Product.css";
-import product from "../Utility/product.jpg";
-import Btn from "./Btn";
 import { useHistory } from 'react-router';
-import styled from "styled-components";
 import Card from './Card';
 
 function Product() {
