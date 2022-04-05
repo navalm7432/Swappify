@@ -6,10 +6,10 @@ import Howtouse from "./Howtouse";
 import HowWeWork from "./HowWeWork";
 import ImgSlider from "./ImgSlider";
 import ProductCard from "./ProductCard";
-import { useSelector, useDispatch } from "react-redux";
+// import { useSelector } from "react-redux";
 
 const Home = (props) => {
-  const result = useSelector((state) => state);
+  // const result = useSelector((state) => state);
   return (
     <Container>
       <Header />

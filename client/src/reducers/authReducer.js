@@ -1,4 +1,5 @@
 const initialState = {
+  // token: localStorage.getItem("auth-token"),
   token: localStorage.getItem("auth-token"),
   isAuthenticated: null,
   isLoading: false,
@@ -28,6 +29,11 @@ const authReducer = (state = initialState, action) => {
         isAuthenticated: true,
         isLoading: false,
       };
+      case "UPDATE_SUCCESS":
+        return{
+          ...state,
+          user:action.payload,
+        }
     case "AUTH_ERROR":
     case "LOGIN_FAILED":
     case "LOGOUT_SUCCESS":

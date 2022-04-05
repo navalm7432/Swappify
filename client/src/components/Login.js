@@ -1,13 +1,13 @@
 import styled from "styled-components";
-import Login_Section from "./Login_Section";
-import Login_Suggestion from "./Login__Suggestion";
+import LoginSection from "./LoginSection";
+import LoginSuggestion from "./LoginSuggestion";
 
 const Login = (props) => {
     return (
         <Container>
             <Content>
-            <Login_Section />
-                <Login_Suggestion />
+            <LoginSection />
+                <LoginSuggestion />     
                
                 <Image>
                     {/* <img src="images/landing.svg" alt=""/> */}
@@ -42,25 +42,25 @@ padding: 80px 40px;
 height: 100% ;
 `;
 
-const BgImage = styled.div`
-height: 100%;
-background-position: top;
-background-size: cover;
-background-repeat: no-repeat;
-background-image: url("/images/p-3.png");
-background-color: white;
-position: absolute;
-top: 0;
-right: 0;
-left: 0;
-z-index: -1;                     //adds all the content on the top of the image 
-/* @media (max-width: 768px) {
-        margin-top: 0px;
-        width: 50rem;
-        position: initial;
-        height: 550rem;
-    } */
-`;
+// const BgImage = styled.div`
+// height: 100%;
+// background-position: top;
+// background-size: cover;
+// background-repeat: no-repeat;
+// background-image: url("/images/p-3.png");
+// background-color: white;
+// position: absolute;
+// top: 0;
+// right: 0;
+// left: 0;
+// z-index: -1;                     //adds all the content on the top of the image 
+// /* @media (max-width: 768px) {
+//         margin-top: 0px;
+//         width: 50rem;
+//         position: initial;
+//         height: 550rem;
+//     } */
+// `;
 
 const Image = styled.div`
 `;

@@ -3,6 +3,7 @@ import User from "../../models/User.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import config from "config";
+import auth from "../../middleware/auth.js";
 
 const router = express.Router();
 
@@ -55,6 +56,29 @@ router.post("/", async (req, res) => {
   } catch (e) {
     res.status(400).json({ msg: e.message });
   }
+});
+
+//@routes  Post api/users/update
+//@desc   Update existing user
+//@access  private
+
+router.post("/update", auth, async (req, res) => {
+  const { name, email, current_email } = req.body;
+  User.findOneAndUpdate(
+    { email: current_email },
+    { name: name, email: email },
+    (error, data) => {
+      if (error) {
+        res.status(500).json({ mssg: error.message });
+      } else {
+        res.json({
+          id: data.id,
+          name: data.name,
+          email: data.email,
+        });
+      }
+    }
+  );
 });
 
 export default router;

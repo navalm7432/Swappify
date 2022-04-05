@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
-import "./Card.css";
 import product from "../Utility/product.jpg";
 import Btn from "./Btn";
 import axios from "axios";
@@ -8,6 +7,10 @@ import { useSelector, useDispatch } from "react-redux";
 const Card = () => {
   const result = useSelector((state) => state);
   const dispatch = useDispatch();
+  const user_id = result.auth.user && result.auth.user.id
+  const res = result.item.data.filter(items => items.user_id != user_id) 
+
+  
   useEffect(() => {
     axios.get("http://localhost:4000/api/items").then((res) => {
       if (res.data.status === "empty") {
@@ -28,11 +31,16 @@ const Card = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+// console.log(result.item.filter(res => res.id == user_id));
+
+
+  
+
   return (
     <ProductCard>
       <div className="product_container">
         {result.item.data.length !== 0 ? (
-          result.item.data.map((items) => (
+          res.map((items) => (
             <div className="product">
               <img src={product} alt="" />
               <div className="detail">
@@ -51,46 +59,38 @@ const Card = () => {
 };
 
 const ProductCard = styled.div`
-height: 370px;
-width: 320px;
-border-radius: 5px;
-border:1px solid #ccc ;
-margin-left: 30px;
+.product_container{
+  box-sizing: border-box;
+  margin-top: 20px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(5,1fr);
+  gap: 5px;
+  padding: 10px;
 
-img {
-    width: 320px;
-    height: 200px;
-    object-fit: fill;
+  .product{
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     align-items: center;
-    justify-content: center;
-}
-`;
-
-const Content = styled.div`
-  h5 {
-    font-weight: bold;
-    font-size: 15px;
-    margin-top: 5px;
-    margin-left: 12px;
+    padding: 10px;
+    border-radius:8px ;
+    .detail{
+      height: 100px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
   }
-
-  p {
-    color: darkgrey;
-    font-size: 15px;
-    margin-top: -12px;
-    text-align: left;
-    margin-left: 4px;
   }
-
-  button {
+  .product >img{
     width: 100%;
-    padding: 16px 20px;
-    border-radius: 4px;
-    border: none;
-    background-color: #7f00ff;
-    color: #fff;
-    margin-top: 10px;
-  }
+    object-fit: contain;
+    border: 1px solid black;
+
+}
+}
 `;
 
 export default Card;

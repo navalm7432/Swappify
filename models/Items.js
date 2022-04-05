@@ -2,7 +2,15 @@ import mongoose from "mongoose";
 
 // creating Schema (or structure) for the data to be saved in mongo db
 const ItemSchema = mongoose.Schema({
+  user_id:{
+    type:String,
+    required:true,
+  },
   name: {
+    type: String,
+    required: true,
+  },
+  category: {
     type: String,
     required: true,
   },

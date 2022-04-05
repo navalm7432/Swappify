@@ -24,13 +24,13 @@ export default function ImgMediaCard() {
   return (
     <Container>
       <Head>
-        <Head_1>
+        <Head1>
         <h3>What are you looking to swap ?</h3>
     <p>We have best deals</p>
-    </Head_1>
-    <Button_1>
+    </Head1>
+    <Button1>
     <button type="button" onClick={handleClick}>See all</button>
-    </Button_1>
+    </Button1>
     </Head>
 
     <Content>
@@ -197,9 +197,9 @@ align-items: center;
 
 `;
 
-const Head_1 = styled.div``;
+const Head1 = styled.div``;
 
-const Button_1 = styled.div`
+const Button1 = styled.div`
 button {
   padding:  10px 12px;
   border: none;

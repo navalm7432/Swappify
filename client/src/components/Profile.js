@@ -2,16 +2,66 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router";
+import axios from "axios";
+import ErrorMessage from "./ErrorMessage";
 
 const Profile = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const result = useSelector((state) => state);
+  const [error, setError] = useState();
+  const [edit, setEdit] = useState(false);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+
   const handleClick = () => history.push("/loginpopup");
 
-  const [edit, setEdit] = useState(false);
+  const handleEdit = () => {
+    if (edit) {
+      setEdit(false);
+    } else {
+      setEdit(true);
+    }
+  };
+  const handleSave = async () => {
+    let data = {
+      name: name,
+      email: email,
+      current_email: result.auth.user && result.auth.user.email,
+    };
 
-  console.log(result);
+    try {
+      let token = localStorage.getItem("auth-token");
+      if (token === null) {
+        localStorage.setItem("auth-token", "");
+        token = "";
+        dispatch({
+          type: "AUTH_ERROR",
+        });
+      }
+      const config = {
+        headers: {
+          "Content-type": "application/json",
+          x_auth_token: token,
+        },
+      };
+
+      const user = await axios.post(
+        "http://localhost:4000/api/users/update",
+        data,
+        config
+      );
+      if (user.data) {
+        dispatch({
+          type: "UPDATE_SUCCESS",
+          payload:user.data
+        });
+      }
+    } catch (e) {
+      e.response && setError(e.response.data.msg);
+    }
+    setEdit(false);
+  };
   const logOut = () => {
     dispatch({
       type: "LOGOUT_SUCCESS",
@@ -34,32 +84,55 @@ const Profile = () => {
       <Detail>
         <User>
           <h4>My Account</h4>
+          {error && (
+            <ErrorMessage
+              eMessage={error}
+              clearError={() => setError(undefined)}
+            />
+          )}
+          {/* Detail area */}
           {!edit ? (
+            //  edit = false
             <Field>
               <label>Name</label>
-              <span>{result.auth.user &&result.auth.user.name}</span>
+              <span>{result.auth.user && result.auth.user.name}</span>
               <label>Email</label>
-              <span>{result.auth.user &&result.auth.user.email}</span>
-              <label>Contact</label>
-              <span>No Contact found</span>
+              <span>{result.auth.user && result.auth.user.email}</span>
             </Field>
           ) : (
+            //  edit = true
             <Field>
               {" "}
               <label>Name</label>
-              <input />
+              <input
+                onChange={(e) => {
+                  setName(e.target.value);
+                }}
+              />
               <label>Email</label>
-              <input />
-              <label>Contact</label>
-              <input />
+              <input
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                }}
+              />
             </Field>
           )}
+          {/* Buttons area */}
           {result.auth.user && result.auth.user ? (
-            <button onClick={logOut}>Logout</button>
+            <>
+              {edit ? (
+                <>
+                  <button onClick={handleEdit}>Cancel</button>
+                  <button onClick={handleSave}>Save</button>
+                </>
+              ) : (
+                <button onClick={handleEdit}>Edit</button>
+              )}
+              <button onClick={logOut}>Logout</button>
+            </>
           ) : (
             <button onClick={handleClick}>LogIn</button>
           )}
-          {/* <button onClick={logOut}>Logout</button> */}
         </User>
         <EditProfile>Hello</EditProfile>
       </Detail>
@@ -98,13 +171,14 @@ const Text = styled.div`
 const Detail = styled.div`
   display: flex;
   width: 80%;
-  height: 350px;
+  //   height: 350px;
   margin-top: 10rem;
 `;
 
 const User = styled.div`
   flex: 0.8;
   margin-left: 90px;
+  padding-bottom: 50px;
   background-color: rgb(71, 122, 252);
   font-size: 30px;
   border-radius: 5px;
@@ -139,15 +213,17 @@ const Field = styled.div`
     margin-bottom: 10px;
     margin-top: 10px;
   }
+  input:placeholder {
+    color: black;
+  }
   input {
     color: black;
-    font-size: 10px;
+    font-size: 15px;
     margin: 0px 10px;
     border-color: rgb(138, 43, 226);
     background: transparent;
     padding: 10px 10px;
     border-radius: 4px;
-    color: transparent;
     outline: none;
   }
 `;

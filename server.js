@@ -15,8 +15,8 @@ app.use(express.json()); // it is for POST and PUT requests, because in both the
 app.use(cors()); // Cross-Origin Resource Sharing (CORS) is an HTTP-header based mechanism that allows a server to indicate any other origins (domain, scheme, or port) than its own from which a browser should permit loading of resources.
 app.use("/api/items", items); // it basically means that anything that starts with "/api/items" should look into items file which we imported
 app.use("/api/users", users);
-app.use("/api/auth", auth);  
-app.use("/api/request", request);  
+app.use("/api/auth", auth);
+app.use("/api/request", request);
 //DB Config
 const dbURI = config.get("mongoURI"); //passed the mongodb url  for connection
 
@@ -29,8 +29,6 @@ mongoose.connection.once("open", () => {
   // just logging when db is connected
   console.log("DB connected");
 });
-
-
 
 const port = process.env.PORT || 4000; // for devlopment using port:5000 but when deployed it will use process.env.PORT
 

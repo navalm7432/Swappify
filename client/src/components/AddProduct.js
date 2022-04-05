@@ -1,27 +1,31 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { useHistory } from "react-router";
 import axios from "axios";
+import ErrorMessage from "./ErrorMessage";
 
 const AddProduct = () => {
-  const [open, setOpen] = React.useState(false);
-  const [item, setItem] = React.useState({});
-  const [desc, setDesc] = React.useState({});
-
-  const [addLine, setAddLine] = React.useState({});
-  const [city, setCity] = React.useState({});
-  const [state, setState] = React.useState({});
-  const [code, setCode] = React.useState();
-
+  const history = useHistory();
   const dispatch = useDispatch();
+  const result = useSelector((state) => state);
+  const [category, setCategory] = React.useState("");
+  const [item, setItem] = React.useState("");
+  const [desc, setDesc] = React.useState("");
+  const [addLine, setAddLine] = React.useState("");
+  const [city, setCity] = React.useState("");
+  const [state, setState] = React.useState("");
+  const [code, setCode] = React.useState(0);
+  const [error, setError] = useState();
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
+  // const handleClickOpen = () => {
+  //   setOpen(true);
+  // };
 
-  const handleClose = () => {
-    setOpen(false);
-  };
+  // const handleClose = () => {
+  //   setOpen(false);
+  // };
+  const id = result.auth.user && result.auth.user.id;
   const onChange = (e) => {
     setItem(e.target.value);
   };
@@ -43,33 +47,61 @@ const AddProduct = () => {
   };
 
   const onSubmit = () => {
-    const Item = {
-      name: item,
-      description: desc,
-      addressLine1: addLine,
-      city: city,
-      state: state,
-      pincode: code,
-    };
-    const token = localStorage.getItem("auth-token");
-    const config = {
-      headers: {
-        "Content-type": "application/json",
-        "x-auth-token": token,
-      },
-    };
-    axios.post("http://localhost:4000/api/items", Item, config).then((res) => {
-      dispatch({
-        type: "IS_EMPTY",
-        payload: false,
-      });
-      console.log(res);
-      dispatch({
-        type: "ADD_ITEM",
-        payload: res.data,
-      });
-    });
-    setOpen(false);
+    try {
+      if (
+        (((((item.length == desc.length) == addLine.length) == city.length) ==
+          state.length) ==
+          category.length) ==
+          0 &&
+        code == 0
+      ) {
+        setError("Please fill all the Feilds");
+      } else {
+        const token = localStorage.getItem("auth-token");
+
+        const config = {
+          headers: {
+            "Content-type": "application/json",
+            x_auth_token: token,
+          },
+        };
+        axios
+          .post("http://localhost:4000/api/auth/verify", config)
+          .then((tokenRes) => {
+            if (tokenRes) {
+            }
+          });
+        const Item = {
+          user_id: id,
+          category: category,
+          name: item,
+          description: desc,
+          addressLine1: addLine,
+          city: city,
+          state: state,
+          pincode: code,
+        };
+
+        axios
+          .post("http://localhost:4000/api/items", Item, config)
+          .then((res) => {
+            dispatch({
+              type: "IS_EMPTY",
+              payload: false,
+            });
+            console.log(res);
+            dispatch({
+              type: "ADD_ITEM",
+              payload: res.data,
+            });
+          });
+
+        // setOpen(false);
+        history.push("/product");
+      }
+    } catch (e) {
+      console.log(e);
+    }
   };
   return (
     <Summary>
@@ -78,43 +110,57 @@ const AddProduct = () => {
         <Content>
           <div className="catBox">
             <Wrap>
-              <button>Car</button>
+              <button onClick={() => setCategory("Car")}>Car</button>
             </Wrap>
           </div>
 
           <div className="catBox">
             <Wrap>
-              <button>Electronics</button>
+              <button onClick={() => setCategory("Electronics")}>
+                {" "}
+                Electronics{" "}
+              </button>
             </Wrap>
           </div>
 
           <div className="catBox">
             <Wrap>
-              <button>Furniture</button>
+              <button onClick={() => setCategory("Furniture")}>
+                Furniture
+              </button>
             </Wrap>
           </div>
 
           <div className="catBox">
             <Wrap>
-              <button>Books</button>
+              <button onClick={() => setCategory("Books")}>Books</button>
             </Wrap>
           </div>
 
           <div className="catBox">
             <Wrap>
-              <button>Fashion</button>
+              <button onClick={() => setCategory("Fashion")}>Fashion</button>
             </Wrap>
           </div>
         </Content>
 
         <h3>Please add required details: </h3>
-
+        {error && (
+          <ErrorMessage
+            eMessage={error}
+            clearError={() => setError(undefined)}
+          />
+        )}
         <Form>
-          <Div_1>
-            <label>Product Name: </label>
-            <input type="text" placeholder="Please add your product name" onChange={onChange}/>
+          <Div1>
+            <label>Product Name*: </label>
+            <input
+              type="text"
+              placeholder="Please add your product name"
+              onChange={onChange}
+            />
 
-            <label>Product Description: </label>
+            <label>Product Description*: </label>
             <input
               type="text"
               placeholder="Please add your product description"
@@ -162,12 +208,14 @@ const AddProduct = () => {
             />
 
             <input type="file" name="picture" />
-            <button type="submit" onClick={onSubmit}>Submit</button>
-          </Div_1>
+            <button type="submit" onClick={onSubmit}>
+              Submit
+            </button>
+          </Div1>
 
-          <Div_2>
+          <Div2>
             <img src="images/fp.svg" alt="" />
-          </Div_2>
+          </Div2>
         </Form>
       </Category>
     </Summary>
@@ -231,7 +279,7 @@ const Form = styled.div`
   margin-top: 60px;
 `;
 
-const Div_1 = styled.div`
+const Div1 = styled.div`
   flex: 0.5;
 
   label {
@@ -273,7 +321,7 @@ const Div_1 = styled.div`
   }
 `;
 
-const Div_2 = styled.div`
+const Div2 = styled.div`
   flex: 0.5;
 
   img {

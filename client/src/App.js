@@ -14,13 +14,12 @@ import LoginPopup from "./components/LoginPopup";
 import Profile from "./components/Profile";
 import ErrorMessage from "./components/ErrorMessage";
 import axios from "axios";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 // import {userLoaded} from "./actions/authAction"
 function App() {
-  const result = useSelector((state) => state);
+  // const result = useSelector((state) => state);
   const dispatch = useDispatch();
   const [error, setError] = useState();
-  console.log(result.auth.user);
   useEffect(() => {
     const checkIsLoggedIn = () => {
       dispatch({
@@ -45,7 +44,6 @@ function App() {
       axios
         .post("http://localhost:4000/api/auth/verify", config)
         .then((tokenRes) => {
-      console.log("hello");
       if (tokenRes.data) {
             axios
               .get("http://localhost:4000/api/auth/user", config)

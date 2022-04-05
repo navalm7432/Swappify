@@ -28,10 +28,11 @@ router.get("/", (req, res) => {
 //@access  Private
 
 router.post("/", (req, res) => {
-  console.log(req.body);
   const newItem = new Items({
     //structure of data we will be receiving as response
+    user_id: req.body.user_id,
     name: req.body.name,
+    category: req.body.category,
     description: req.body.description,
     address: {
       addressLine1: req.body.addressLine1,
@@ -42,15 +43,13 @@ router.post("/", (req, res) => {
   });
   newItem.save(); // saving the response structred according to our structure in our db
   res.status(200).send(newItem); // status = ok and send us the data we received by http req
-
-  //  sending mail of alert:- item is been added
 });
 
 //@routes  DELETE api/items
 //@desc    delete a item from item collection
 //@access  Private
 
-router.delete("/:id", (req, res) => {
+router.delete("/:id", auth, (req, res) => {
   Items.findById(req.params.id, (err, data) => {
     // fetching particular content in item collection by unique id
     if (err) {
