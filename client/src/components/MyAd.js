@@ -12,6 +12,9 @@ export default function MyAd() {
   const dispatch = useDispatch();
   const history = useHistory();
   const handleClick = () => history.push("/addproduct");
+  const user_id = result.auth.user && result.auth.user.id;
+  const res = result.item.data.filter((items) => items.user_id == user_id);
+  console.log(res);
 
   useEffect(() => {
     axios.get("http://localhost:4000/api/items").then((res) => {
@@ -52,17 +55,25 @@ export default function MyAd() {
           <img src="images/team1.svg" alt="" />
         </Image>
       </AddProduct>
-        <h1>Your Products</h1>
+      <h1>Your Products</h1>
       <div className="product_container">
-        {result.item.data.length !== 0 ? (
-          result.item.data.map((items) => (
+        {res.length !== 0 ? (
+          res.map((items) => (
             <div className="product">
               <img src={product} alt="" />
               <div className="detail">
                 <h4>{items.name}</h4>
                 <p> {items.description} </p>
               </div>
-              <Btn Name={items.name} desc={items.description} />
+              <div className="btn">
+              <Btn purpose="edit"/>
+              <Btn
+                purpose="delete"
+                id={items._id}
+                Name={items.name}
+                desc={items.description}
+              />
+              </div>
             </div>
           ))
         ) : (

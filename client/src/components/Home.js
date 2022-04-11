@@ -23,7 +23,7 @@ const Home = (props) => {
       </Search>
       </Title>
       <Content>
-        <img src="images/friends.svg" alt=""/>
+        <img src="images/shopping.svg" alt=""/>
       </Content>
       </Main>
       <Category />

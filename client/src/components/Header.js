@@ -1,10 +1,12 @@
+import React, { useState } from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router";
-import { useSelector} from "react-redux";
+import { useSelector } from "react-redux";
 const Header = () => {
   const history = useHistory();
   const result = useSelector((state) => state);
   const handleClick = () => history.push("/profile");
+  const [notification, setNotification] = useState([]);
   return (
     <Nav>
       <h1>SWAPPIFY</h1>
@@ -26,15 +28,22 @@ const Header = () => {
           <span>My-ad</span>
         </a>
       </NavMenu>
+      <Notification>
+        <img src="images/notification.png" alt="" />
+        {notification.length !== 0 ? <span className="badge">{notification.length}</span> : null}
+      </Notification>
       <Profile onClick={handleClick}>
-          {result.auth.user && result.auth.user ? (<a href="/profile">
-          <img src="images/user.png" alt="" />
-          <span>{result.auth.user.name}</span>
-        </a>) :<a href="/loginpopup">
-          <img src="images/loggedOutUser.png" alt="" />
-          <span>Login</span>
-        </a>}
-        
+        {result.auth.user && result.auth.user ? (
+          <a href="/profile">
+            <img src="images/user.png" alt="" />
+            <span>{result.auth.user.name}</span>
+          </a>
+        ) : (
+          <a href="/loginpopup">
+            <img src="images/loggedOutUser.png" alt="" />
+            <span>Login</span>
+          </a>
+        )}
       </Profile>
     </Nav>
   );
@@ -53,9 +62,38 @@ const Nav = styled.nav`
   padding: 0 36px;
   letter-spacing: 5px;
   z-index: 3;
-  h1{
-      color:white;
-      font-family: 'Kalam', cursive;
+  h1 {
+    color: white;
+    font-family: "Kalam", cursive;
+  }
+`;
+
+const Notification = styled.div`
+  postion: relative;
+  box-sizing: border-box;
+
+  img {
+    margin-right: 10px;
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+  }
+
+  .badge {
+    position: absolute;
+    top: 13px;
+    right: 175px;
+    height: 15px;
+    width: 15px;
+    padding: 0;
+    background-color: white;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 13px;
+    display: flex;
+    justify-content: center;
+    align_items: center;
+    letter-spacing: 0px;
   }
 `;
 
@@ -130,12 +168,12 @@ const Profile = styled.div`
   }
   span {
     color: white;
-    letter-spacing:0;
-    font-weight:550;
+    letter-spacing: 0;
+    font-weight: 550;
     text-transform: capitalize;
   }
   img {
-      margin-right:10px;
+    margin-right: 10px;
     height: 30px;
     width: 30px;
     cursor: pointer;

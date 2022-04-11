@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1003px" height="734px" viewBox="0 0 1003 734" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 61.2 (101010) - https://sketch.com -->
+    <title>2E1D4F95-CBE8-4A02-A6DA-38755FF4C973@1.5x</title>
+    <desc>Created with sketchtool.</desc>
+    <defs>
+        <linearGradient x1="0%" y1="50%" x2="69.310023%" y2="50%" id="linearGradient-1">
+            <stop stop-color="#9F62C9" stop-opacity="0.5" offset="0%"></stop>
+            <stop stop-color="#663399" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.5">
+        <g id="Current-Account-landing-page" transform="translate(-437.000000, 0.000000)" fill="url(#linearGradient-1)">
+            <g id="circle" transform="translate(952.125150, 222.353232) rotate(-83.000000) translate(-952.125150, -222.353232) translate(416.125150, -308.646768)">
+                <circle id="parallax_circle_solid" opacity="0.19798" cx="548.591794" cy="538.099949" r="523"></circle>
+            </g>
+        </g>
+    </g>
+</svg>

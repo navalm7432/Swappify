@@ -48,7 +48,6 @@ const LoginPopup = () => {
           <button onClick={handleClick}>Sign In</button>
         </SignUp>
         <SignIn>
-         
           <h3>Create Account</h3>
           <label>Email</label>
           <input
@@ -101,6 +100,7 @@ const SignIn = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
   h3 {
     text-align: center;
     font-size: 30px;

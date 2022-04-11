@@ -3,12 +3,10 @@ import styled from "styled-components";
 // import "./Product.css";
 import axios from "axios";
 import { useDispatch } from "react-redux";
-import { useHistory } from 'react-router';
 import Card from './Card';
 
 function Product() {
 
-  // const result = useSelector((state) => state);
   const dispatch = useDispatch();
   useEffect(() => {
     axios.get("http://localhost:4000/api/items").then((res) => {

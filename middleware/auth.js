@@ -3,7 +3,6 @@ import jwt from "jsonwebtoken";
 
 function auth(req, res, next) {
   const token = req.header("x_auth_token");
-
   try {
     //check for token
     if (!token) {
