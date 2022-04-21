@@ -5,8 +5,10 @@ import items from "./routes/api/items.js";
 import users from "./routes/api/usersRegistration.js";
 import auth from "./routes/api/userAuthorization.js";
 import request from "./routes/api/request.js";
+import swap from "./routes/api/swapRoutes.js";
 import cors from "cors";
 import config from "config";
+
 // configuring our express framework
 const app = express();
 
@@ -17,6 +19,8 @@ app.use("/api/items", items); // it basically means that anything that starts wi
 app.use("/api/users", users);
 app.use("/api/auth", auth);
 app.use("/api/request", request);
+app.use("/api/swapreq", swap);
+
 //DB Config
 const dbURI = config.get("mongoURI"); //passed the mongodb url  for connection
 
@@ -24,6 +28,7 @@ mongoose.connect(dbURI, {
   useNewUrlParser: true,
   useCreateIndex: true,
   useUnifiedTopology: true,
+  useFindAndModify:false,
 });
 mongoose.connection.once("open", () => {
   // just logging when db is connected

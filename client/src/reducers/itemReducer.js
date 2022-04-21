@@ -36,6 +36,10 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         isEmpty: action.payload,
       };
+    case "ITEM_UPDATED":
+      return {
+        ...state,
+      };
     default:
       return state;
   }

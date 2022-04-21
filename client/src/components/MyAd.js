@@ -13,8 +13,7 @@ export default function MyAd() {
   const history = useHistory();
   const handleClick = () => history.push("/addproduct");
   const user_id = result.auth.user && result.auth.user.id;
-  const res = result.item.data.filter((items) => items.user_id == user_id);
-  console.log(res);
+  const res = result.item.data.filter((items) => items.user_id === user_id);
 
   useEffect(() => {
     axios.get("http://localhost:4000/api/items").then((res) => {
@@ -69,7 +68,7 @@ export default function MyAd() {
               <Btn purpose="edit"/>
               <Btn
                 purpose="delete"
-                id={items._id}
+                product_id={items._id}
                 Name={items.name}
                 desc={items.description}
               />

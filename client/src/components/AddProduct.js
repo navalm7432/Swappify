@@ -9,8 +9,8 @@ const AddProduct = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const result = useSelector((state) => state);
-  const [category, setCategory] = React.useState("");
   const [item, setItem] = React.useState("");
+  const [category, setCategory] = React.useState("");
   const [desc, setDesc] = React.useState("");
   const [addLine, setAddLine] = React.useState("");
   const [city, setCity] = React.useState("");
@@ -45,18 +45,22 @@ const AddProduct = () => {
   const onChangeCode = (e) => {
     setCode(parseInt(e.target.value, 10));
   };
+  console.log(category);
 
   const onSubmit = () => {
     try {
       if (
-        (((((item.length == desc.length) == addLine.length) == city.length) ==
-          state.length) ==
-          category.length) ==
-          0 &&
-        code == 0
+        item.length === 0 &&
+        desc.length === 0 &&
+        addLine.length === 0 &&
+        city.length === 0 &&
+        state.length === 0 &&
+        category.length === 0 &&
+        code === 0
       ) {
         setError("Please fill all the Feilds");
       } else {
+        console.log(category);
         const token = localStorage.getItem("auth-token");
 
         const config = {
@@ -72,6 +76,8 @@ const AddProduct = () => {
             }
           });
         const Item = {
+          swapping:false,
+          swapped:false,
           user_id: id,
           category: category,
           name: item,
@@ -81,7 +87,7 @@ const AddProduct = () => {
           state: state,
           pincode: code,
         };
-
+        console.log(Item);
         axios
           .post("http://localhost:4000/api/items", Item, config)
           .then((res) => {
@@ -89,7 +95,6 @@ const AddProduct = () => {
               type: "IS_EMPTY",
               payload: false,
             });
-            console.log(res);
             dispatch({
               type: "ADD_ITEM",
               payload: res.data,

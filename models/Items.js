@@ -2,6 +2,14 @@ import mongoose from "mongoose";
 
 // creating Schema (or structure) for the data to be saved in mongo db
 const ItemSchema = mongoose.Schema({
+  isSwapping:{
+    type:Boolean,
+    required:true,
+  },
+  isSwapped:{
+    type:Boolean,
+    required:true,
+  },
   user_id:{
     type:String,
     required:true,
@@ -10,10 +18,10 @@ const ItemSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  // category: {
-  //   type: String,
-  //   required: true,
-  // },
+  category: {
+    type: String,
+    required: true,
+  },
   description: {
     type: String,
     required: true,

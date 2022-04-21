@@ -30,6 +30,8 @@ router.get("/", (req, res) => {
 router.post("/", (req, res) => {
   const newItem = new Items({
     //structure of data we will be receiving as response
+    isSwapping: req.body.swapping,
+    isSwapped: req.body.swapped,
     user_id: req.body.user_id,
     name: req.body.name,
     category: req.body.category,
@@ -45,7 +47,7 @@ router.post("/", (req, res) => {
   res.status(200).send(newItem); // status = ok and send us the data we received by http req
 });
 
-//@routes  DELETE api/items
+//@routes  DELETE api/items/ :id
 //@desc    delete a item from item collection
 //@access  Private
 
@@ -60,6 +62,37 @@ router.delete("/:id", auth, (req, res) => {
       data.remove(); // removing the fetched content from collection
     }
   });
+});
+
+//@routes  Update api/items/update
+//@desc    update a item from item collection
+//@access  Private
+
+router.post("/update", async (req, res) => {
+  const { swappeeProduct, swapperProduct } = req.body;
+  Items.findOneAndUpdate(
+    { _id: swappeeProduct },
+    { isSwapping: true },
+    (error, data) => {
+      if (error) {
+        res.status(500).json({ mssg: error.message });
+      } else {
+        res.json("SwappeeProduct Updated");
+      }
+    }
+  );
+
+  Items.findOneAndUpdate(
+    { _id: swapperProduct },
+    { isSwapping: true },
+    (error, data) => {
+      if (error) {
+        res.status(500).json({ mssg: error.message });
+      } else {
+        res.json("SwapperProduct Updated");
+      }
+    }
+  );
 });
 
 export default router;

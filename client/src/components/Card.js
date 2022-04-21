@@ -9,12 +9,13 @@ const Card = () => {
   const result = useSelector((state) => state);
   const dispatch = useDispatch();
   const user_id = result.auth.user && result.auth.user.id;
-  const res = result.item.data.filter((items) => items.user_id !== user_id);
-
+  const res = result.item.data.filter(
+    (items) => items.user_id !== user_id && items.isSwapping !== true
+  );
   useEffect(() => {
     axios.get("http://localhost:4000/api/items").then((res) => {
       if (res.data.status === "empty") {
-        dispatch({
+        dispatch({   
           type: "IS_EMPTY",
           payload: true,
         });
@@ -30,11 +31,11 @@ const Card = () => {
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
   // console.log(result.item.filter(res => res.id == user_id));
 
   return (
     <ProductCard>
+      
       <div className="product_container">
         {result.item.data.length !== 0 ? (
           res.map((items) => (
@@ -46,7 +47,8 @@ const Card = () => {
               </div>
               <Btn
                 purpose="swap"
-                id={items.id}
+                product_id={items._id}
+                swappee_id={items.user_id}
                 Name={items.name}
                 desc={items.description}
               />
@@ -81,8 +83,8 @@ const ProductCard = styled.div`
       .detail {
         height: 100px;
         width: 100%;
-        display: flex;
-        flex-direction: column;
+        // display: flex;
+        // flex-direction: column;
         // align-items: center;
       }
     }
