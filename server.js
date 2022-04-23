@@ -28,12 +28,14 @@ mongoose.connect(dbURI, {
   useNewUrlParser: true,
   useCreateIndex: true,
   useUnifiedTopology: true,
-  useFindAndModify:false,
+  useFindAndModify: false,
 });
 mongoose.connection.once("open", () => {
   // just logging when db is connected
   console.log("DB connected");
 });
+
+
 
 const port = process.env.PORT || 4000; // for devlopment using port:5000 but when deployed it will use process.env.PORT
 

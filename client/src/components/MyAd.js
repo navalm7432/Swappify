@@ -4,9 +4,8 @@ import { useHistory } from "react-router";
 import "./Product.css";
 import styled from "styled-components";
 import axios from "axios";
-import product from "../Utility/product.jpg";
 import Btn from "./Btn";
-
+// import picture from "../../../productImage/"
 export default function MyAd() {
   const result = useSelector((state) => state);
   const dispatch = useDispatch();
@@ -59,19 +58,19 @@ export default function MyAd() {
         {res.length !== 0 ? (
           res.map((items) => (
             <div className="product">
-              <img src={product} alt="" />
+              <img src={`images/productImage/${items.image}`} alt="" />
               <div className="detail">
                 <h4>{items.name}</h4>
                 <p> {items.description} </p>
               </div>
               <div className="btn">
-              <Btn purpose="edit"/>
-              <Btn
-                purpose="delete"
-                product_id={items._id}
-                Name={items.name}
-                desc={items.description}
-              />
+                <Btn purpose="edit" />
+                <Btn
+                  purpose="delete"
+                  product_id={items._id}
+                  Name={items.name}
+                  desc={items.description}
+                />
               </div>
             </div>
           ))

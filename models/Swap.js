@@ -5,15 +5,39 @@ const SwapSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  swappee: {
-    type: String,
-    required: true,
-  },
   swapperProduct: {
     type: String,
     required: true,
   },
+  swapperProductName: {
+    type: String,
+    required: true,
+  },
+  swapperProductImage: {
+    type: String,
+    required: true,
+  },
+  swapperProductDesc: {
+    type: String,
+    required: true,
+  },
+  swappee: {
+    type: String,
+    required: true,
+  },
   swappeeProduct: {
+    type: String,
+    required: true,
+  },
+  SwappeeProductName: {
+    type: String,
+    required: true,
+  },
+  swappeeProductImage: {
+    type: String,
+    required: true,
+  },
+  swappeeProductdesc: {
     type: String,
     required: true,
   },

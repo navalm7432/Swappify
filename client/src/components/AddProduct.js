@@ -17,7 +17,7 @@ const AddProduct = () => {
   const [state, setState] = React.useState("");
   const [code, setCode] = React.useState(0);
   const [error, setError] = useState();
-
+  const [picture, setPicture] = useState(null);
   // const handleClickOpen = () => {
   //   setOpen(true);
   // };
@@ -45,8 +45,15 @@ const AddProduct = () => {
   const onChangeCode = (e) => {
     setCode(parseInt(e.target.value, 10));
   };
-  console.log(category);
 
+  const submit = () => {};
+
+  const onChangeP = (e) => {
+    if (e.target.files[0]) {
+      setPicture(e.target.files[0]);
+      console.log(picture);
+    }
+  };
   const onSubmit = () => {
     try {
       if (
@@ -63,6 +70,20 @@ const AddProduct = () => {
         console.log(category);
         const token = localStorage.getItem("auth-token");
 
+        let data = new FormData();
+        data.append("swapping", false);
+        data.append("swapped", false);
+        data.append("user_id", id);
+        data.append("picture", picture);
+        data.append("category", category);
+        data.append("name", item);
+        data.append("description", desc);
+        data.append("addressLine1", false);
+        data.append("swapped", addLine);
+        data.append("city", city);
+        data.append("state", state);
+        data.append("pincode", code);
+
         const config = {
           headers: {
             "Content-type": "application/json",
@@ -75,31 +96,30 @@ const AddProduct = () => {
             if (tokenRes) {
             }
           });
-        const Item = {
-          swapping:false,
-          swapped:false,
-          user_id: id,
-          category: category,
-          name: item,
-          description: desc,
-          addressLine1: addLine,
-          city: city,
-          state: state,
-          pincode: code,
-        };
-        console.log(Item);
-        axios
-          .post("http://localhost:4000/api/items", Item, config)
-          .then((res) => {
-            dispatch({
-              type: "IS_EMPTY",
-              payload: false,
-            });
-            dispatch({
-              type: "ADD_ITEM",
-              payload: res.data,
-            });
+        // const Item = {
+        //   swapping: false,
+        //   swapped: false,
+        //   user_id: id,
+        //   picture: picture,
+        //   category: category,
+        //   name: item,
+        //   description: desc,
+        //   addressLine1: addLine,
+        //   city: city,
+        //   state: state,
+        //   pincode: code,
+        // };
+        // console.log(Item);
+        axios.post("http://localhost:4000/api/items", data).then((res) => {
+          dispatch({
+            type: "IS_EMPTY",
+            payload: false,
           });
+          dispatch({
+            type: "ADD_ITEM",
+            payload: res.data,
+          });
+        });
 
         // setOpen(false);
         history.push("/product");
@@ -157,11 +177,12 @@ const AddProduct = () => {
           />
         )}
         <Form>
-          <Div1>
+          <Div1 encType="multipart/form-data">
             <label>Product Name*: </label>
             <input
               type="text"
               placeholder="Please add your product name"
+              name="name"
               onChange={onChange}
             />
 
@@ -170,6 +191,7 @@ const AddProduct = () => {
               type="text"
               placeholder="Please add your product description"
               className="desp"
+              name="desc"
               onChange={onChangeDescription}
             />
 
@@ -191,29 +213,34 @@ const AddProduct = () => {
               type="text"
               placeholder="Address Line 1*"
               className="line"
+              name="addLine"
               onChange={onChangeAddLine}
             />
             <input
               type="text"
               placeholder="City*"
               className="line"
+              name="city"
               onChange={onChangeCity}
             />
             <input
               type="text"
               placeholder="State*"
               className="line"
+              name="state"
               onChange={onChangeState}
             />
             <input
               type="text"
               placeholder="Pin Code*"
               className="line"
+              name="pincode"
               onChange={onChangeCode}
             />
+            <label>Add Image of Product* : </label>
 
-            <input type="file" name="picture" />
-            <button type="submit" onClick={onSubmit}>
+            <input onChange={onChangeP} type="file" filename="picture" />
+            <button onClick={onSubmit} type="submit">
               Submit
             </button>
           </Div1>
@@ -282,9 +309,51 @@ const Form = styled.div`
   display: flex;
   flex-direction: row;
   margin-top: 60px;
+
+  form {
+    flex: 0.5;
+
+    label {
+      font-size: 15px;
+      margin-left: 20px;
+      text-align: left;
+      //margin-right: 570px;
+    }
+
+    input {
+      width: 100%;
+      height: 40px;
+      border-radius: 4px;
+      padding: 12px 20px;
+      border: 1px solid #ccc;
+      display: block;
+      margin-bottom: 20px;
+      margin-top: 20px;
+      margin-left: 15px;
+    }
+
+    .desp {
+      height: 70px;
+    }
+
+    input [type="radio"] {
+      width: 10px;
+      height: 10px;
+    }
+
+    .options {
+      padding: 10px 20px;
+      font-size: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      margin-left: 20px;
+      margin-right: 400px;
+      margin-bottom: 20px;
+    }
+  }
 `;
 
-const Div1 = styled.div`
+const Div1 = styled.form`
   flex: 0.5;
 
   label {

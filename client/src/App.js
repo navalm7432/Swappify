@@ -15,6 +15,7 @@ import Profile from "./components/Profile";
 import ErrorMessage from "./components/ErrorMessage";
 import axios from "axios";
 import { useDispatch } from "react-redux";
+import Notification from "./components/Notification";
 // import {userLoaded} from "./actions/authAction"
 function App() {
   // const result = useSelector((state) => state);
@@ -98,6 +99,9 @@ function App() {
           </Route>
           <Route exact path="/loginpopup">
             <LoginPopup />
+          </Route>
+          <Route exact path="/notification">
+            <Notification/>
           </Route>
 
           <Route exact path="/signin">

@@ -15,7 +15,7 @@ const Card = () => {
   useEffect(() => {
     axios.get("http://localhost:4000/api/items").then((res) => {
       if (res.data.status === "empty") {
-        dispatch({   
+        dispatch({
           type: "IS_EMPTY",
           payload: true,
         });
@@ -35,22 +35,24 @@ const Card = () => {
 
   return (
     <ProductCard>
-      
       <div className="product_container">
         {result.item.data.length !== 0 ? (
           res.map((items) => (
             <div className="product">
-              <img src={product} alt="" />
+              <img src={`images/productImage/${items.image}`} alt="" />
               <div className="detail">
                 <h4>{items.name}</h4>
                 <p> {items.description} </p>
+                <p> {items.city} </p>
               </div>
               <Btn
                 purpose="swap"
-                product_id={items._id}
-                swappee_id={items.user_id}
-                Name={items.name}
-                desc={items.description}
+                product_id={result.item.data && items._id}
+                swappee_id={result.item.data && items.user_id}
+                SwappeeProductName={result.item.data && items.name}
+                swappeeProductdesc={result.item.data && items.description}
+                swappeeProductImage={result.item.data && items.image}
+                swappeeProductCity={result.item.data && items.city}
               />
             </div>
           ))

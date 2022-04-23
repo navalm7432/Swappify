@@ -25,8 +25,8 @@ align-items: center;
     border-radius:8px ;
 }
 .product >img{
-    width: 100%;
-    object-fit: contain;
+    width: 250px;
+    height:180px;
     border: 1px solid black;
 
 }

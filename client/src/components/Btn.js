@@ -2,22 +2,40 @@ import React from "react";
 import Button from "@material-ui/core/Button";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
+import { useHistory } from "react-router";
 
-function Btn({ purpose, product_id, swappee_id, Name, desc }) {
+function Btn({
+  purpose,
+  product_id,
+  swappee_id,
+  SwappeeProductName,
+  swappeeProductdesc,
+  swappeeProductImage,
+  swappeeProductCity,
+}) {
+  const history = useHistory();
   const dispatch = useDispatch();
   const result = useSelector((state) => state);
-  const data = {
-    name: Name,
-    description: desc,
-  };
+  const user_id = result.auth.user && result.auth.user.id;
+  const swapperProduct =
+    result.item.data &&
+    result.item.data.filter((items) => items.user_id === user_id);
+
+  console.log(result.auth.user && swapperProduct[0].address.city);
   const onSwap = () => {
     const swapData = {
       swapper: result.auth.user.id,
+      swapperProduct: result.item.data && swapperProduct[0]._id,
+      swapperProductName: result.item.data && swapperProduct[0].name,
+      swapperProductImage: result.item.data && swapperProduct[0].image,
+      swapperProductDesc: result.item.data && swapperProduct[0].description,
       swappee: swappee_id,
-      swapperProduct: 112,
       swappeeProduct: product_id,
+      SwappeeProductName,
+      swappeeProductImage,
+      swappeeProductdesc,
     };
-
+    console.log(swapData);
     const token = localStorage.getItem("auth-token");
     const config = {
       headers: {
@@ -37,7 +55,7 @@ function Btn({ purpose, product_id, swappee_id, Name, desc }) {
         "http://localhost:4000/api/items/update",
         {
           swappeeProduct: swapData.swappeeProduct,
-          swapperProduct: "625576da75a65304d0c1fccd",
+          swapperProduct: swapData.swapperProduct,
         },
         config
       )
@@ -46,7 +64,8 @@ function Btn({ purpose, product_id, swappee_id, Name, desc }) {
           type: "ITEM_UPDATED",
         });
       });
-    // axios.post("http://localhost:4000/api/request", data);
+
+    history.push("/home");
   };
   const onDelete = () => {
     const token = localStorage.getItem("auth-token");

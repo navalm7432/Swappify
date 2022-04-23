@@ -1,6 +1,7 @@
 import express from "express";
 import Items from "../../models/Items.js";
 import auth from "../../middleware/auth.js";
+import multer from "multer";
 
 const router = express.Router();
 
@@ -27,13 +28,27 @@ router.get("/", (req, res) => {
 //@desc    Add/create a item in item collection
 //@access  Private
 
-router.post("/", (req, res) => {
+// Storage for image uplaod
+const Storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "./client/public/images/productimage");
+  },
+  filename: (req, file, cb) => {
+    cb(null, file.originalname);
+  },
+});
+
+const upload = multer({ storage: Storage });
+
+router.post("/", upload.single("picture"), (req, res) => {
+
   const newItem = new Items({
     //structure of data we will be receiving as response
     isSwapping: req.body.swapping,
-    isSwapped: req.body.swapped,
+    isSwapped: false,
     user_id: req.body.user_id,
     name: req.body.name,
+    image: req.file.originalname,
     category: req.body.category,
     description: req.body.description,
     address: {
@@ -76,8 +91,6 @@ router.post("/update", async (req, res) => {
     (error, data) => {
       if (error) {
         res.status(500).json({ mssg: error.message });
-      } else {
-        res.json("SwappeeProduct Updated");
       }
     }
   );
@@ -89,10 +102,13 @@ router.post("/update", async (req, res) => {
       if (error) {
         res.status(500).json({ mssg: error.message });
       } else {
-        res.json("SwapperProduct Updated");
+        res.json("Both product Updated");
       }
     }
   );
 });
+
+
+
 
 export default router;

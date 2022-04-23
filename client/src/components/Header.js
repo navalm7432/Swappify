@@ -4,9 +4,10 @@ import { useHistory } from "react-router";
 import { useSelector } from "react-redux";
 const Header = () => {
   const history = useHistory();
+  const [notification, setNotification] = useState([]);
   const result = useSelector((state) => state);
   const handleClick = () => history.push("/profile");
-  const [notification, setNotification] = useState([]);
+  const handleClickBell = () => history.push("/notification");
   return (
     <Nav>
       <h1>SWAPPIFY</h1>
@@ -28,10 +29,15 @@ const Header = () => {
           <span>My-ad</span>
         </a>
       </NavMenu>
-      <Notification>
+      <a href="/notification">
+      <Bell>
         <img src="images/notification.png" alt="" />
-        {notification.length !== 0 ? <span className="badge">{notification.length}</span> : null}
-      </Notification>
+        {notification.length !== 0 ? (
+          <span className="badge">{notification.length}</span>
+        ) : null}
+      </Bell>
+      </a>
+      
       <Profile onClick={handleClick}>
         {result.auth.user && result.auth.user ? (
           <a href="/profile">
@@ -68,7 +74,7 @@ const Nav = styled.nav`
   }
 `;
 
-const Notification = styled.div`
+const Bell = styled.div`
   postion: relative;
   box-sizing: border-box;
 
