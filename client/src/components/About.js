@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Footer from "./Footer";
+import Help from './Help';
 
 
 const About = (props) => {
@@ -15,6 +16,8 @@ const About = (props) => {
              <h5>We cutout the middleman and get money
                   directly into the hand of weavers</h5>
          </TextField>
+         
+         <Help />
          <Footer />
      </Container>
  )
@@ -64,11 +67,12 @@ const TextField = styled.section`
 margin-top: 50rem;
 text-align: center;
 font-size: 40px;
-margin-left: 120px;
-margin-right: 120px;
+margin-left: 350px;
+margin-right: 350px;
 word-wrap: break-word;
 font-weight: 300;
 font-family: Avenir-Roman, sans-serif;
+color: rgb(138,43,226);
 `;
 
 export default About;

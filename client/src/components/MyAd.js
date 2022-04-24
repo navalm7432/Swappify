@@ -12,7 +12,12 @@ export default function MyAd() {
   const history = useHistory();
   const handleClick = () => history.push("/addproduct");
   const user_id = result.auth.user && result.auth.user.id;
-  const res = result.item.data.filter((items) => items.user_id === user_id);
+  const res = result.item.data.filter(
+    (items) =>
+      items.user_id === user_id &&
+      items.isSwapping !== true &&
+      items.isSwapped !== true
+  );
 
   useEffect(() => {
     axios.get("http://localhost:4000/api/items").then((res) => {
@@ -86,13 +91,13 @@ const AddProduct = styled.div`
   display: flex;
 
   h2 {
-    margin-top: 150px;
+    margin-top: 100px;
     font-size: 70px;
     color: #000;
   }
 
   p {
-    margin-top: -15px;
+    margin-top: -45px;
     font-size: 15px;
     color: #000;
   }
@@ -114,6 +119,65 @@ const AddProduct = styled.div`
             box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
         } */
   }
+
+  .product_container {
+    box-sizing: border-box;
+    margin-top: 20px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+
+    .product {
+      //border: 1px solid #ccc;
+      border: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: left;
+      padding: .5px;
+      border-radius: 8px;
+      box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
+    height: 340px;
+    width: 250px;
+    background-color:white ;
+
+     
+      .detail {
+        height: 100px;
+        width: 100%;
+        // display: flex;
+        // flex-direction: column;
+        // align-items: center;
+        h4 {
+          text-align: left;
+          font-size: 20px;
+          margin-top: 3px;
+          font-weight: normal;
+          text-align: left;
+        }
+        p{
+          color: gray;
+          margin-top: -10px;
+          text-align: left;
+
+        }
+      }
+    }
+    .product > img {
+      width: 100%;
+      object-fit: cover;
+      border: none;
+
+    }
+
+    .product:hover {
+      transform: scale(1.1);
+     box-shadow: 0 10px 20px rgb(0 0 0 / 20%);
+    }
+  }
+
+
 `;
 const Post = styled.div`
   flex: 0.4;
@@ -128,7 +192,7 @@ const Post = styled.div`
 
   p {
     margin-left: 80px;
-    margin-top: 50px;
+    margin-top: 10px;
     font-size: 20px;
     color: #bf53ff;
     width: 50%;
@@ -159,7 +223,7 @@ const Image = styled.div`
   flex: 0.6;
 
   img {
-    margin-top: 50px;
+    margin-top: -100px;
     height: 800px;
     width: 850px;
   }

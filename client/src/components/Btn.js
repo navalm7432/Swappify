@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Button from "@material-ui/core/Button";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router";
+import './Btn.css'
 
 function Btn({
   purpose,
@@ -11,24 +12,43 @@ function Btn({
   SwappeeProductName,
   swappeeProductdesc,
   swappeeProductImage,
-  swappeeProductCity,
 }) {
   const history = useHistory();
   const dispatch = useDispatch();
   const result = useSelector((state) => state);
+  const [res1, setRes1] = useState();
+
+  useEffect(() => {
+    axios.get("http://localhost:4000/api/items").then((res) => {
+      if (res.data.status === "empty") {
+        dispatch({
+          type: "IS_EMPTY",
+          payload: true,
+        });
+      } else {
+        dispatch({
+          type: "LOADING_ITEMS",
+        });
+        dispatch({
+          type: "GET_ITEMS",
+          payload: res.data,
+        });
+        setRes1(res.data);
+      }
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   const user_id = result.auth.user && result.auth.user.id;
   const swapperProduct =
-    result.item.data &&
-    result.item.data.filter((items) => items.user_id === user_id);
+    res1 && res1.filter((items) => items.user_id === user_id);
 
-  console.log(result.auth.user && swapperProduct[0].address.city);
   const onSwap = () => {
     const swapData = {
       swapper: result.auth.user.id,
-      swapperProduct: result.item.data && swapperProduct[0]._id,
-      swapperProductName: result.item.data && swapperProduct[0].name,
-      swapperProductImage: result.item.data && swapperProduct[0].image,
-      swapperProductDesc: result.item.data && swapperProduct[0].description,
+      swapperProduct: res1 && swapperProduct[0]._id,
+      swapperProductName: res1 && swapperProduct[0].name,
+      swapperProductImage: res1 && swapperProduct[0].image,
+      swapperProductDesc: res1 && swapperProduct[0].description,
       swappee: swappee_id,
       swappeeProduct: product_id,
       SwappeeProductName,
@@ -66,6 +86,10 @@ function Btn({
       });
 
     history.push("/home");
+    axios.post("http://localhost:4000/api/request", {
+      ProductName: res1 && swapperProduct[0].namee,
+      Description: res1 && swapperProduct[0].description,
+    });
   };
   const onDelete = () => {
     const token = localStorage.getItem("auth-token");
@@ -89,7 +113,7 @@ function Btn({
   const onEdit = () => {};
 
   return (
-    <div>
+    <div className="button">
       {purpose == "swap" ? (
         <Button variant="outlined" onClick={onSwap}>
           {purpose}

@@ -38,4 +38,32 @@ router.post("/", (req, res) => {
   res.status(200).send(req.body);
 });
 
+// for contact
+
+router.post("/contact", (req, res) => {
+  //  sending mail of alert:- item is been added
+  let mailOptions = {
+    from: "elktrobeast@gmail.com", // TODO: email sender
+    to: "navaljain7432@gmail.com", // TODO: email receiver
+    subject: `Message from website user`,
+    text: `
+        Product Details:-
+        name: ${req.body.name}
+        email: ${req.body.email}
+        name: ${req.body.number}
+        name: ${req.body.message}
+        `,
+  };
+
+  transporter.sendMail(mailOptions, (err, data) => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log("Email sent!!!");
+    }
+  });
+
+  res.status(200).send(req.body);
+});
+
 export default router;

@@ -28,7 +28,7 @@ mongoose.connect(dbURI, {
   useNewUrlParser: true,
   useCreateIndex: true,
   useUnifiedTopology: true,
-  useFindAndModify: false,
+  //useFindAndModify: false,
 });
 mongoose.connection.once("open", () => {
   // just logging when db is connected

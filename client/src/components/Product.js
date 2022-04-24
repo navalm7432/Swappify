@@ -60,10 +60,11 @@ margin-right: 20px; */
 
 const ProductCard = styled.div`
 h3{
-  color:#000 ;
-  font-size: 20px;
+  color: rgb(138,43,226) ;
+  font-size: 30px;
   margin-left: 40px;
   font-style: underline;
+  margin-bottom: 50px;
 }
 `;
 

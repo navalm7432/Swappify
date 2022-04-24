@@ -62,6 +62,7 @@ function App() {
     };
     checkIsLoggedIn();
     // eslint-disable-next-line
+    
   }, []);
 
   return (

@@ -79,7 +79,7 @@ const LoginPopup = () => {
 const PopUp = styled.div`
   height: 100vh;
   padding: 60px 60px;
-  background-color: rgb(138, 43, 226);
+  background-color: none;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -104,13 +104,14 @@ const SignIn = styled.div`
   h3 {
     text-align: center;
     font-size: 30px;
-    color: white;
+    color: #000;
   }
   label {
     font-size: 20px;
     font-weight: bold;
     padding: 10px 12px;
-    color: white;
+    color: #000;
+    text-align: left;
   }
   input {
     font-weigth: bold;
@@ -138,7 +139,7 @@ const SignUp = styled.div`
   flex: 0.4;
   /* margin-left: 40px;
 margin-top: 180px; */
-  background-color: rgb(11, 15, 230);
+  background-color: #7f00ff;
   h4 {
     text-align: center;
     margin-left: 20px;
