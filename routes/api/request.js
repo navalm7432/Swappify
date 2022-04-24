@@ -17,15 +17,44 @@ let transporter = nodemailer.createTransport({
 
 router.post("/", (req, res) => {
   //  sending mail of alert:- item is been added
-  let mailOptions = {
-    from: "elktrobeast@gmail.com", // TODO: email sender
-    to: "navaljain7432@gmail.com", // TODO: email receiver
-    subject: `There is a request to swap your product`,
-    text: `
-        Product Details:-
-        name: ${req.body.name}
-        description: ${req.body.description}`,
-  };
+  const purpose = req.body.purpose;
+  if (purpose === "swapreq") {
+    var mailOptions = {
+      from: "elktrobeast@gmail.com", // TODO: email sender
+      to: "navaljain7432@gmail.com", // TODO: email receiver
+      subject: `There is a request to swap your product`,
+      text: `
+          Please log in to website to see.
+          Thank You!
+          Happy Swapping!!
+          `,
+    };
+  }
+  if (purpose === "accept") {
+    var mailOptions = {
+      from: "elktrobeast@gmail.com", // TODO: email sender
+      to: "navaljain7432@gmail.com", // TODO: email receiver
+      subject: `Your request for swapping has been accepted,`,
+      text: `
+      Soon your trade will be compledted.
+      More info will be shared by our delivery partner.
+      Thank You!
+      Happy Swapping!!`,
+    };
+  }
+
+  if (purpose === "reject") {
+    var mailOptions = {
+      from: "elktrobeast@gmail.com", // TODO: email sender
+      to: "navaljain7432@gmail.com", // TODO: email receiver
+      subject: `Your request for swapping has been rejected,`,
+      text: `
+     Sorry to inform you that your request to swap your product was rejected by the owner of requested product,
+      Please visit the website to swap with other product,
+      Thank You!
+      Happy Swapping!!`,
+    };
+  }
 
   transporter.sendMail(mailOptions, (err, data) => {
     if (err) {

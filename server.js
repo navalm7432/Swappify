@@ -8,6 +8,7 @@ import request from "./routes/api/request.js";
 import swap from "./routes/api/swapRoutes.js";
 import cors from "cors";
 import config from "config";
+import path from "path";
 
 // configuring our express framework
 const app = express();
@@ -35,7 +36,15 @@ mongoose.connection.once("open", () => {
   console.log("DB connected");
 });
 
+// Serve static  assetsif in production
+if (process.env.NODE_ENV === "production") {
+  // Sttaic folder
 
+  app.use(express.static("client/build"));
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname,"client","build","index.html"));
+  });
+}
 
 const port = process.env.PORT || 4000; // for devlopment using port:5000 but when deployed it will use process.env.PORT
 

@@ -34,11 +34,8 @@ function Notification() {
   }, []);
 
   return (
-   
     <Div>
-      
       <Div1>
-        
         {result.swap.data.length !== 0 && res.length !== 0 ? (
           res.map((items) => (
             <Container>
@@ -81,6 +78,10 @@ function Notification() {
                         });
 
                         history.push("/home");
+
+                        axios.post("http://localhost:4000/api/request", {
+                          purpose: "accept",
+                        });
                       }}
                     >
                       Accept
@@ -95,6 +96,9 @@ function Notification() {
                         id: result.swap.data && items._id,
                       });
                       history.push("/home");
+                      axios.post("http://localhost:4000/api/request", {
+                        purpose: "reject",
+                      });
                     }}
                   >
                     Reject
@@ -169,7 +173,7 @@ const Div1 = styled.div`
 
   h1 {
     text-align: center;
-    color: #6C63FF;
+    color: #6c63ff;
     font-size: 50px;
   }
 
@@ -216,7 +220,7 @@ const Div2 = styled.div`
   img {
     width: 800px;
     height: 600px;
-    margin-right:30px ;
+    margin-right: 30px;
   }
 `;
 const Box = styled.div`

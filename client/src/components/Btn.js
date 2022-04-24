@@ -3,7 +3,7 @@ import Button from "@material-ui/core/Button";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router";
-import './Btn.css'
+import "./Btn.css";
 
 function Btn({
   purpose,
@@ -39,6 +39,7 @@ function Btn({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const user_id = result.auth.user && result.auth.user.id;
+  const user_email = result.auth.user && result.auth.user.email;
   const swapperProduct =
     res1 && res1.filter((items) => items.user_id === user_id);
 
@@ -87,8 +88,7 @@ function Btn({
 
     history.push("/home");
     axios.post("http://localhost:4000/api/request", {
-      ProductName: res1 && swapperProduct[0].namee,
-      Description: res1 && swapperProduct[0].description,
+      purpose: "swapreq",
     });
   };
   const onDelete = () => {
@@ -118,12 +118,8 @@ function Btn({
         <Button variant="outlined" onClick={onSwap}>
           {purpose}
         </Button>
-      ) : purpose == "delete" ? (
-        <Button variant="outlined" aria-label="delete" onClick={onDelete}>
-          {purpose}
-        </Button>
       ) : (
-        <Button variant="outlined" onClick={onEdit}>
+        <Button variant="outlined" aria-label="delete" onClick={onDelete}>
           {purpose}
         </Button>
       )}

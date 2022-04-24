@@ -27,7 +27,6 @@ const Home = (props) => {
       </Content>
       </Main>
       <Category />
-      <ProductCard />
       <ImgSlider />
       <HowWeWork />
       <Howtouse />

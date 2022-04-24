@@ -69,7 +69,6 @@ export default function MyAd() {
                 <p> {items.description} </p>
               </div>
               <div className="btn">
-                <Btn purpose="edit" />
                 <Btn
                   purpose="delete"
                   product_id={items._id}

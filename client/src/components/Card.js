@@ -39,7 +39,7 @@ const Card = () => {
   return (
     <ProductCard>
       <div className="product_container">
-        {result.item.data.length !== 0 ? (
+        {result.item.data.length !== 0  ? (
           res.map((items) => (
             <product>
             <div className="product">
