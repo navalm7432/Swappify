@@ -21,7 +21,7 @@ app.use("/api/users", users);
 app.use("/api/auth", auth);
 app.use("/api/request", request);
 app.use("/api/swapreq", swap);
-app.use(express.static("client/build"));
+app.use(express.static(path.join(__dirname, "client", "build")));
 
 //DB Config
 const dbURI = config.get("mongoURI"); //passed the mongodb url  for connection
