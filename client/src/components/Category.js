@@ -66,12 +66,12 @@ const Container = styled.div`
   background-color: none;
 
   h3 {
-    margin-top: 10px;
+    margin-top: 2px;
     margin-left: 40px;
     font-size: 35px;
     font-weight: 500;
     text-decoration: underline;
-    color: #000;
+    color: rgb(138,43,226);
     margin-bottom: 2px;
     font-family: "Heebo", sans-serif;
   }
@@ -80,7 +80,7 @@ const Container = styled.div`
     margin-left: 40px;
     margin-top: 2px;
     font-size: 20px;
-    color: #9f33ff;
+    color: black;
     font-style: underline;
     font-family: "Heebo", sans-serif;
   }

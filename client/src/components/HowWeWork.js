@@ -9,7 +9,7 @@ const HowWeWork = (props) => {
 
                 <Img>
 
-                    <img src="/images/exp.svg" alt="" />
+                    <img src="/images/expe.svg" alt="" />
                 </Img>
 
                 <Content>
@@ -48,7 +48,7 @@ h3 {
     font-size: 30px;
     font-weight: 500;
     text-decoration: underline;
-    color: #191919;
+    color: rgb(138,43,226);
     margin-bottom: 2px;
     font-family: 'Heebo', sans-serif;
 }

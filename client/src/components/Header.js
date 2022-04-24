@@ -69,13 +69,13 @@ const Nav = styled.nav`
   letter-spacing: 5px;
   z-index: 3;
   h1 {
-    color: white;
+    color: #000;
     font-family: "Kalam", cursive;
   }
 `;
 
 const Bell = styled.div`
-  postion: relative;
+  position: relative;
   box-sizing: border-box;
 
   img {
@@ -98,7 +98,7 @@ const Bell = styled.div`
     font-size: 13px;
     display: flex;
     justify-content: center;
-    align_items: center;
+    align-items: center;
     letter-spacing: 0px;
   }
 `;
@@ -120,7 +120,7 @@ const NavMenu = styled.div`
     padding: 0 12px;
 
     span {
-      color: white;
+      color: #000;
       text-decoration: none;
       font-size: 17px;
       letter-spacing: 1.42px;
@@ -131,7 +131,7 @@ const NavMenu = styled.div`
       text-decoration: none;
 
       &:before {
-        background-color: white;
+        background-color: #000;
         border-radius: 0px 0px 4px 4px;
         bottom: -6px;
         content: "";
@@ -149,7 +149,7 @@ const NavMenu = styled.div`
     }
     &:focus {
       span {
-        color: white;
+        color: #000;
       }
     }
     &:hover {
@@ -173,7 +173,7 @@ const Profile = styled.div`
     justify-content: center;
   }
   span {
-    color: white;
+    color: #000;
     letter-spacing: 0;
     font-weight: 550;
     text-transform: capitalize;

@@ -134,7 +134,7 @@ const Profile = () => {
             <button onClick={handleClick}>LogIn</button>
           )}
         </User>
-        <EditProfile>Hello</EditProfile>
+       
       </Detail>
     </Container>
   );
@@ -169,19 +169,17 @@ const Text = styled.div`
 `;
 
 const Detail = styled.div`
-  display: flex;
-  width: 80%;
-  //   height: 350px;
-  margin-top: 10rem;
+  
+ 
 `;
 
 const User = styled.div`
-  flex: 0.8;
+  //flex: 0.8;
   margin-left: 90px;
   padding-bottom: 50px;
-  background-color: rgb(71, 122, 252);
-  font-size: 30px;
+  
   border-radius: 5px;
+  margin-top: 400px;
   button {
     padding: 10px 20px;
     margin-left: 20px;
@@ -199,6 +197,8 @@ const User = styled.div`
     font-family: sans-serif;
     font-style: normal;
     font-weight: 600;
+    color: rgba(138,43,226);
+  font-size: 40px;
   }
 `;
 
@@ -210,8 +210,8 @@ const Field = styled.div`
     margin-left: 20px;
     color: rgba(0, 0, 0, 0.63);
 
-    margin-bottom: 10px;
-    margin-top: 10px;
+    margin-bottom: 20px;
+    margin-top: 20px;
   }
   input:placeholder {
     color: black;
@@ -222,14 +222,32 @@ const Field = styled.div`
     margin: 0px 10px;
     border-color: rgb(138, 43, 226);
     background: transparent;
-    padding: 10px 10px;
+    padding: 10px 20px;
     border-radius: 4px;
     outline: none;
+    width: 70%;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+      box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
+      margin-bottom: 20px;
+  }
+
+  span {
+    font-size: 20px;
+    color: black;
+    margin-bottom: 10px;
+    margin-left: 40px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    width: 70%;
+    border-radius: 5px;
+    box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.10);
   }
 `;
 
 const EditProfile = styled.div`
-  flex: 0.2;
+
 `;
 
 export default Profile;

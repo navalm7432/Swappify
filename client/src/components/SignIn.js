@@ -82,7 +82,7 @@ const SignIn = (props) => {
 };
 
 const Content = styled.div`
-background-color: rgb(138, 43, 226);
+background-color: none;
 height:100vh;
 `;
 
@@ -93,7 +93,7 @@ const Box = styled.div`
 const Img = styled.div`
   flex: 0.5;
   img {
-    height: 80vh;
+    height: 90vh;
     margin-top: 50px;
   }
 `;
@@ -105,11 +105,11 @@ const Field = styled.div`
     font-size: 30px;
     margin-top: 60px;
     margin-bottom: 60px;
-    color:white;
+    color:#000;
     text-decoration:underline;
   }
   label {
-    color:white;
+    color: #000;
     font-size: 20px;
     margin-left: 30px;
     font-weight: 600;

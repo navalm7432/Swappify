@@ -34,9 +34,11 @@ function Notification() {
   }, []);
 
   return (
+   
     <Div>
+      
       <Div1>
-        <h4>Swap Requests</h4>
+        
         {result.swap.data.length !== 0 && res.length !== 0 ? (
           res.map((items) => (
             <Container>
@@ -68,20 +70,22 @@ function Notification() {
               </Box>
               {items.isSwapped === false ? (
                 <Action>
-                  <button
-                    onClick={() => {
-                      axios.post("http://localhost:4000/api/swapreq/accept", {
-                        swapperProductName: items.swapperProductName,
-                        swappeeProductName:
-                          result.swap.data && items.SwappeeProductName,
-                        id: result.swap.data && items._id,
-                      });
+                  {user_id === items.swappee ? (
+                    <button
+                      onClick={() => {
+                        axios.post("http://localhost:4000/api/swapreq/accept", {
+                          swapperProductName: items.swapperProductName,
+                          swappeeProductName:
+                            result.swap.data && items.SwappeeProductName,
+                          id: result.swap.data && items._id,
+                        });
 
-                      history.push("/home");
-                    }}
-                  >
-                    Accept
-                  </button>
+                        history.push("/home");
+                      }}
+                    >
+                      Accept
+                    </button>
+                  ) : null}
                   <button
                     onClick={() => {
                       axios.post("http://localhost:4000/api/swapreq/reject", {
@@ -97,16 +101,31 @@ function Notification() {
                   </button>
                 </Action>
               ) : (
-                <h3>Trade in Progress</h3>
+                <>
+                  <h3>Trade in Progress</h3>
+                  <button
+                    onClick={() => {
+                      axios.post("http://localhost:4000/api/swapreq/reject", {
+                        swapperProductName: items.swapperProductName,
+                        swappeeProductName:
+                          result.swap.data && items.SwappeeProductName,
+                        id: result.swap.data && items._id,
+                      });
+                      history.push("/home");
+                    }}
+                  >
+                    Reject
+                  </button>
+                </>
               )}
             </Container>
           ))
         ) : (
-          <h1>"No requests"</h1>
+          <h1>"No request found😔 ...."</h1>
         )}
       </Div1>
       <Div2>
-        <img src="images/done.svg" alt="" />
+        <img src="images/notif.svg" alt="" />
       </Div2>
     </Div>
   );
@@ -116,11 +135,13 @@ const Div = styled.div`
   padding-top: 100px;
   padding-left: 10px;
   padding-right: 10px;
-  background-color: rgb(138, 43, 226);
+  background-color: none;
   height: 100vh;
   width: 100vw;
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
   // flex: 0.8;
 `;
 const Action = styled.div`
@@ -137,6 +158,7 @@ const Action = styled.div`
     margin: 10px;
     border: 1px solid black;
     border-radius: 10px;
+    cursor: pointer;
   }
 `;
 const Div1 = styled.div`
@@ -144,6 +166,17 @@ const Div1 = styled.div`
   flex-direction: column;
   justify-content: left;
   align-items: center;
+
+  h1 {
+    text-align: center;
+    color: #6C63FF;
+    font-size: 50px;
+  }
+
+  /* h4{
+    margin-top: -50px;
+    text-align: left;
+  } */
 `;
 const Container = styled.div`
   height: 420px;
@@ -162,15 +195,29 @@ const Container = styled.div`
     object-fit: contain;
     height: 100px;
   }
-  h3{
-    margin-left:20px;
-    border:1px solid black;
-    border-radius:10px;
-    text-align:center;
+  h3 {
+    margin-left: 20px;
+    border: 1px solid black;
+    border-radius: 10px;
+    text-align: center;
+  }
+  button {
+    cursor: pointer;
+    width: 80px;
+    height: 40px;
+    background-color: none;
+    margin: 10px;
+    border: 1px solid black;
+    border-radius: 10px;
   }
 `;
 const Div2 = styled.div`
   // flex: 0.2;
+  img {
+    width: 800px;
+    height: 600px;
+    margin-right:30px ;
+  }
 `;
 const Box = styled.div`
   width: 295px;

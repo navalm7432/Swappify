@@ -1,0 +1,23 @@
+.button > Button {
+    width: 100%;
+    padding: 12px 80px;
+    background-color: #7f00ff;
+    border: none;
+    color: #fff;
+    text-align: center;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  margin-bottom: 12px;
+}
+
+.button >Button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgb(0 0 0 / 20%);
+        background-color: #9f33ff;
+        color: black;
+        transform: translate(0px) ease-in-out;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+          rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+      
+}

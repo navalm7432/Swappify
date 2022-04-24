@@ -18,12 +18,12 @@ const Home = (props) => {
         <h1>Swappify</h1>
         <p>Grap your opportunities and best deals only at swappify with best quality products and verified customers.</p>
       <Search>
-        <input type="text" placeholder="Search" />
+        {/* <input type="text" placeholder="Search" /> */}
         {/* <img src="images/loupe.png" alt=""/> */}
       </Search>
       </Title>
       <Content>
-        <img src="images/shopping.svg" alt=""/>
+        <img src="images/home.svg" alt=""/>
       </Content>
       </Main>
       <Category />

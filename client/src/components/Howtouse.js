@@ -29,6 +29,7 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: '40px',
     fontSize: '30px',
     fontWeight: '500',
+    color: 'rgb(138,43,226)',
   }
 }));
 
@@ -51,15 +52,15 @@ export default function SimpleAccordion() {
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-          <Typography className={classes.heading}>Step: 1</Typography>
+          <Typography className={classes.heading}>Step 1: Login to Swappify</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
-          incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation 
-          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate 
-          velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa 
-          qui officia deserunt mollit anim id est laborum
+          User,
+          
+          </Typography>
+          <Typography>
+           Go to the Login pages register yourself. If already register then signin to your registered account.
           </Typography>
         </AccordionDetails>
       </Accordion>
@@ -69,15 +70,11 @@ export default function SimpleAccordion() {
           aria-controls="panel2a-content"
           id="panel2a-header"
         >
-          <Typography className={classes.heading}>Step: 2</Typography>
+          <Typography className={classes.heading}>Step 2: Click On Product</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
-          incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation 
-          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate 
-          velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa 
-          qui officia deserunt mollit anim id est laborum
+          After registration has been done successfully, You will be landed on to the home page, Click on Product which is in navbar.Here you will find all the registered products by our different customers.
           </Typography>
         </AccordionDetails>
       </Accordion>
@@ -88,15 +85,11 @@ export default function SimpleAccordion() {
           aria-controls="panel2a-content"
           id="panel2a-header"
         >
-          <Typography className={classes.heading}>Step: 3</Typography>
+          <Typography className={classes.heading}>Step 3: Send Swap Request</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
-          incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation 
-          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate 
-          velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa 
-          qui officia deserunt mollit anim id est laborum
+          After clicking on Product page , Search your required items on to this page. While Searching once you found your required product send the swap request to the user who product you want to swap. The request that you have send, now will be visible on the natification page that is click on the bell icon on the top of the page.
           </Typography>
         </AccordionDetails>
       </Accordion>
@@ -107,15 +100,11 @@ export default function SimpleAccordion() {
           aria-controls="panel2a-content"
           id="panel2a-header"
         >
-          <Typography className={classes.heading}>Step: 4</Typography>
+          <Typography className={classes.heading}>Step 4: Swap request response</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
-          incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation 
-          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate 
-          velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa 
-          qui officia deserunt mollit anim id est laborum
+          After sending swap request, weather your has been accepted or rejected will be notified on to the notification. Thank You
           </Typography>
         </AccordionDetails>
       </Accordion>

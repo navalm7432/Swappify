@@ -175,7 +175,7 @@ h3 {
     font-size: 30px;
     font-weight: 500;
     text-decoration: underline;
-    color: #191919;
+    color: rgb(138,43,226);
     margin-bottom: 2px;
     font-family: 'Heebo', sans-serif;
 }
@@ -184,7 +184,7 @@ p {
     margin-left: 40px;
     margin-top: 2px;
     font-size: 20px;
-    color: gray;
+    color: black;
     font-family: 'Heebo', sans-serif;
     margin-bottom: 50px;
 }

@@ -10,7 +10,10 @@ const Card = () => {
   const dispatch = useDispatch();
   const user_id = result.auth.user && result.auth.user.id;
   const res = result.item.data.filter(
-    (items) => items.user_id !== user_id && items.isSwapping !== true
+    (items) =>
+      items.user_id !== user_id &&
+      items.isSwapping !== true &&
+      items.isSwapped !== true
   );
   useEffect(() => {
     axios.get("http://localhost:4000/api/items").then((res) => {
@@ -38,6 +41,7 @@ const Card = () => {
       <div className="product_container">
         {result.item.data.length !== 0 ? (
           res.map((items) => (
+            <product>
             <div className="product">
               <img src={`images/productImage/${items.image}`} alt="" />
               <div className="detail">
@@ -55,6 +59,7 @@ const Card = () => {
                 swappeeProductCity={result.item.data && items.city}
               />
             </div>
+            </product>
           ))
         ) : (
           <h1>Empty Basket</h1>
@@ -70,30 +75,56 @@ const ProductCard = styled.div`
     margin-top: 20px;
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 5px;
-    padding: 10px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+    //padding: 10px;
 
     .product {
-      border: 1px solid black;
+      //border: 1px solid #ccc;
+      border: none;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
       align-items: center;
-      padding: 10px;
+      text-align: left;
+      padding: .5px;
       border-radius: 8px;
+      box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
+    height: 340px;
+    width: 250px;
+    background-color:white ;
+
+     
       .detail {
         height: 100px;
         width: 100%;
         // display: flex;
         // flex-direction: column;
         // align-items: center;
+        h4 {
+          text-align: left;
+          font-size: 20px;
+          margin-top: 3px;
+          font-weight: normal;
+          text-align: left;
+        }
+        p{
+          color: gray;
+          margin-top: -10px;
+          text-align: left;
+
+        }
       }
     }
     .product > img {
       width: 100%;
-      object-fit: contain;
-      border: 1px solid black;
+      object-fit: cover;
+      border: none;
+
+    }
+
+    .product:hover {
+      transform: scale(1.1);
+     box-shadow: 0 10px 20px rgb(0 0 0 / 20%);
     }
   }
 `;
