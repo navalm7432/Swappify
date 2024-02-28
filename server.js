@@ -21,30 +21,28 @@ app.use("/api/users", users);
 app.use("/api/auth", auth);
 app.use("/api/request", request);
 app.use("/api/swapreq", swap);
-app.use(express.static(path.join(__dirname, "client", "build")));
+// app.use(express.static(path.join(__dirname, "client", "build")));
 
 //DB Config
 const dbURI = config.get("mongoURI"); //passed the mongodb url  for connection
 
-mongoose.connect(dbURI, {
-  useNewUrlParser: true,
-  useCreateIndex: true,
-  useUnifiedTopology: true,
-  //useFindAndModify: false,
-});
-mongoose.connection.once("open", () => {
-  // just logging when db is connected
-  console.log("DB connected");
-});
+mongoose
+  .connect(dbURI, { useUnifiedTopology: true,useNewUrlParser: true })
+  .then(() => {
+    console.log("DB is connected");
+  })
+  .catch((error) => {
+    console.log(error);
+  });
 
 // Serve static  assetsif in production
-if (process.env.NODE_ENV === "production") {
-  // Sttaic folder
+// if (process.env.NODE_ENV === "production") {
+//   // Sttaic folder
 
-  app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname,"client","build","index.html"));
-  });
-}
+//   app.get("*", (req, res) => {
+//     res.sendFile(path.join(__dirname,"client","build","index.html"));
+//   });
+// }
 
 const port = process.env.PORT || 4000; // for devlopment using port:5000 but when deployed it will use process.env.PORT
 

@@ -57,7 +57,7 @@ function App() {
           }
         })
         .catch((e) => {
-          e.response.data.msg && setError(e.response.data.msg);
+          e?.response?.data?.msg && setError(e?.response?.data?.msg);
         });
     };
     checkIsLoggedIn();
