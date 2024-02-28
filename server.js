@@ -47,3 +47,4 @@ mongoose
 const port = process.env.PORT || 4000; // for devlopment using port:5000 but when deployed it will use process.env.PORT
 
 app.listen(port, () => console.log(`Server running on port ${port}`));
+module.exports = app();
