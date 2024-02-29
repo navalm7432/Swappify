@@ -27,7 +27,7 @@ app.use("/api/swapreq", swap);
 const dbURI = config.get("mongoURI"); //passed the mongodb url  for connection
 
 mongoose
-  .connect(dbURI, { useUnifiedTopology: true,useNewUrlParser: true })
+  .connect(dbURI, { useUnifiedTopology: true, useNewUrlParser: true })
   .then(() => {
     console.log("DB is connected");
   })
@@ -47,4 +47,4 @@ mongoose
 const port = process.env.PORT || 4000; // for devlopment using port:5000 but when deployed it will use process.env.PORT
 
 app.listen(port, () => console.log(`Server running on port ${port}`));
-module.exports = app();
+export default app;

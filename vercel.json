@@ -1,13 +1,3 @@
 {
-    "version": 2,
-    "rewrites": [
-      {
-        "source": "server.js"
-      }
-    ],
-    "routes": [
-      {
-        "source": "/(.*)"
-      }
-    ]
-  }
+  "rewrites": [{ "source": "/(.*)", "destination": "/api" }]
+}
